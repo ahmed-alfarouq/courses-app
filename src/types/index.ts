@@ -53,3 +53,13 @@ export interface Course {
   createdAt: string;
   updatedAt: string;
 }
+
+// Components
+export interface BreadcrumbItem {
+  label: string;
+  to?: string;
+}
+
+export interface BreadcrumbProps {
+  items: BreadcrumbItem[];
+}

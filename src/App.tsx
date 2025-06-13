@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
+import CourseDetails from "./pages/CourseDetails";
 
 // Components
 import ErrorOverlay from "./components/ErrorOverlay";
@@ -29,6 +30,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="course/:id" element={<CourseDetails />} />
         </Routes>
       </BrowserRouter>
       <ErrorOverlay message={error} />
