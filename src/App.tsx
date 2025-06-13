@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
+import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 
 // Components
@@ -30,7 +31,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="course/:id" element={<CourseDetails />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetails />} />
         </Routes>
       </BrowserRouter>
       <ErrorOverlay message={error} />
