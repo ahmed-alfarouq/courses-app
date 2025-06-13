@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { getCourses } from "./lib/api/courses";
+// Pages
+import Home from "./pages/Home";
 
+// Components
 import ErrorOverlay from "./components/ErrorOverlay";
-
 import CoursesContext from "./context/coursesContext";
 
+// API
+import { getCourses } from "./lib/api/courses";
+
+// Types
 import type { Course } from "./types";
 
 const App = () => {
@@ -20,7 +26,11 @@ const App = () => {
 
   return (
     <CoursesContext.Provider value={{ courses }}>
-      <h1 className="text-3xl font-bold">Course Management System</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
       <ErrorOverlay message={error} />
     </CoursesContext.Provider>
   );
