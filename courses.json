@@ -1,0 +1,336 @@
+[
+    {
+        "id": 1,
+        "name": "Introduction to Computer Science",
+        "description": "This course is an introduction to computer science and programming.",
+        "instructor": "Ali Shahin",
+        "duration": "10 hours",
+        "language": "English",
+        "isFree": false,
+        "price": 100,
+        "enrolled_students": 50,
+        "image": "https://i.ytimg.com/vi/2mySUIR9k20/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDMNz0Cj46RKcgbWBEJR-5l5BCBLw",
+        "sections": [
+            {
+                "id": 1,
+                "title": "Week 1–4",
+                "description": "Start with the basics of Computer Science",
+                "lessons": [
+                    {
+                        "id": 1,
+                        "name": "The components of a computer",
+                        "description": "This lesson is an introduction to the components of a computer.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "John Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "Awesome lesson!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Ahmed Al-Farouq",
+                                "avatar": "https://placehold.co/150x150?text=AF",
+                                "content": "It's a good lesson!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Computer Science and its fields",
+                        "description": "This lesson is an introduction to computer science and its fields.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "Jane Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "I will choose Back-End Development!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Ahmed Al-Farouq",
+                                "avatar": "https://placehold.co/150x150?text=AF",
+                                "content": "I will choose Front-End Development!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            },
+                            {
+                                "id": 3,
+                                "name": "Mai Ali",
+                                "avatar": "https://placehold.co/150x150?text=MA",
+                                "content": "I like Moble Development!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Introduction to Programming",
+                        "description": "This lesson is an introduction to programming.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "exam": {
+                            "id": 101,
+                            "title": "Introduction to Programming Quiz",
+                            "duration": "10 minutes",
+                            "passingScore": 60,
+                            "questions": [
+                                {
+                                    "id": 1,
+                                    "question": "Which component is considered the brain of the computer?",
+                                    "type": "multiple-choice",
+                                    "options": [
+                                        {
+                                            "id": "a",
+                                            "text": "RAM"
+                                        },
+                                        {
+                                            "id": "b",
+                                            "text": "Hard Drive"
+                                        },
+                                        {
+                                            "id": "c",
+                                            "text": "CPU"
+                                        },
+                                        {
+                                            "id": "d",
+                                            "text": "GPU"
+                                        }
+                                    ],
+                                    "correctOptionId": "c"
+                                },
+                                {
+                                    "id": 2,
+                                    "question": "What does RAM stand for?",
+                                    "type": "multiple-choice",
+                                    "options": [
+                                        {
+                                            "id": "a",
+                                            "text": "Read Access Memory"
+                                        },
+                                        {
+                                            "id": "b",
+                                            "text": "Random Access Memory"
+                                        },
+                                        {
+                                            "id": "c",
+                                            "text": "Remote Access Module"
+                                        },
+                                        {
+                                            "id": "d",
+                                            "text": "Run-All Memory"
+                                        }
+                                    ],
+                                    "correctOptionId": "b"
+                                }
+                            ]
+                        },
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "Jane Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "Programming is awesome!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Code editor installation",
+                        "description": "This lesson is an introduction to programming.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "Jane Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "Great!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "title": "Week 5–8",
+                "description": "Start with the basics of Computer Science",
+                "lessons": [
+                    {
+                        "id": 1,
+                        "name": "The components of a computer",
+                        "description": "This lesson is an introduction to the components of a computer.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "John Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "Awesome lesson!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Ahmed Al-Farouq",
+                                "avatar": "https://placehold.co/150x150?text=AF",
+                                "content": "It's a good lesson!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Computer Science and its fields",
+                        "description": "This lesson is an introduction to computer science and its fields.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "Jane Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "I will choose Back-End Development!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            },
+                            {
+                                "id": 2,
+                                "name": "Ahmed Al-Farouq",
+                                "avatar": "https://placehold.co/150x150?text=AF",
+                                "content": "I will choose Front-End Development!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            },
+                            {
+                                "id": 3,
+                                "name": "Mai Ali",
+                                "avatar": "https://placehold.co/150x150?text=MA",
+                                "content": "I like Moble Development!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Introduction to Programming",
+                        "description": "This lesson is an introduction to programming.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "Jane Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "Programming is awesome!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Code editor installation",
+                        "description": "This lesson is an introduction to programming.",
+                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "exam": {
+                            "id": 101,
+                            "title": "Introduction to Programming Quiz",
+                            "duration": "10 minutes",
+                            "passingScore": 60,
+                            "questions": [
+                                {
+                                    "id": 1,
+                                    "question": "Which component is considered the brain of the computer?",
+                                    "type": "multiple-choice",
+                                    "options": [
+                                        {
+                                            "id": "a",
+                                            "text": "RAM"
+                                        },
+                                        {
+                                            "id": "b",
+                                            "text": "Hard Drive"
+                                        },
+                                        {
+                                            "id": "c",
+                                            "text": "CPU"
+                                        },
+                                        {
+                                            "id": "d",
+                                            "text": "GPU"
+                                        }
+                                    ],
+                                    "correctOptionId": "c"
+                                },
+                                {
+                                    "id": 2,
+                                    "question": "What does RAM stand for?",
+                                    "type": "multiple-choice",
+                                    "options": [
+                                        {
+                                            "id": "a",
+                                            "text": "Read Access Memory"
+                                        },
+                                        {
+                                            "id": "b",
+                                            "text": "Random Access Memory"
+                                        },
+                                        {
+                                            "id": "c",
+                                            "text": "Remote Access Module"
+                                        },
+                                        {
+                                            "id": "d",
+                                            "text": "Run-All Memory"
+                                        }
+                                    ],
+                                    "correctOptionId": "b"
+                                }
+                            ]
+                        },
+                        "comments": [
+                            {
+                                "id": 1,
+                                "name": "Jane Doe",
+                                "avatar": "https://placehold.co/150x150?text=JD",
+                                "content": "Great!",
+                                "createdAt": "2021-01-01",
+                                "updatedAt": "2021-01-01"
+                            }
+                        ],
+                        "createdAt": "2021-01-01",
+                        "updatedAt": "2021-01-01"
+                    }
+                ]
+            }
+        ],
+        "createdAt": "2021-01-01",
+        "updatedAt": "2021-01-01"
+    }
+]
