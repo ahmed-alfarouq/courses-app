@@ -16,6 +16,10 @@
   font-display: swap;
 }
 
+body {
+  font-family: "Spartan", ui-sans-serif, sans-serif;
+}
+
 @theme {
   --font-spartan: "Spartan", ui-sans-serif, sans-serif;
   --font-ge-ss-two: "GE SS Two", serif;
