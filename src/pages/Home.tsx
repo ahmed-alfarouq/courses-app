@@ -1,17 +1,22 @@
-import CourseCard from "../components/CourseCard";
-import { useCoursesContext } from "../context/coursesContext";
+import { Link } from "react-router-dom";
+
+import PageHeader from "../components/PageHeader";
 
 const Home = () => {
-  const { courses } = useCoursesContext();
   return (
-    <section>
-      <header className="py-6 px-3 bg-[#F5F9FA]">
-        <h1 className="text-3xl font-bold">Courses App</h1>
-      </header>
-      <main className="py-6 px-3 flex flex-wrap justify-center md:justify-start items-center gap-4">
-        {courses?.map((course) => (
-          <CourseCard course={course} key={course.id} />
-        ))}
+    <section className="min-h-screen flex flex-col items-stretch">
+      <PageHeader />
+      <main className="py-3 px-3 md:px-12 flex-1 flex flex-col items-center justify-center text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-primary-text mb-4">Welcome to CoursesApp 🎓</h2>
+        <p className="text-xl md:text-2xl text-secondary-text mb-6">
+          Learn, grow, and level up your skills with our courses.
+        </p>
+        <Link
+          to="/courses"
+          className="px-6 py-3 text-base md:text-lg rounded-md bg-primary text-white hover:bg-primary/80 transition"
+        >
+          Browse Courses
+        </Link>
       </main>
     </section>
   );
