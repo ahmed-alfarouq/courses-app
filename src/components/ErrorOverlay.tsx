@@ -7,7 +7,7 @@ const ErrorOverlay = ({ message }: { message: string }) => {
   return (
     <section
       className={cn(
-        "absolute inset-0 bg-black/80 px-4 hidden",
+        "absolute inset-0 bg-black/80 px-4 hidden z-50",
         message.length && "block"
       )}
     >
