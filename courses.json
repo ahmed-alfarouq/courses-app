@@ -20,7 +20,7 @@
                         "id": 1,
                         "name": "The components of a computer",
                         "description": "This lesson is an introduction to the components of a computer.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/want-to-work.mp4",
                         "comments": [
                             {
                                 "id": 1,
@@ -46,7 +46,7 @@
                         "id": 2,
                         "name": "Computer Science and its fields",
                         "description": "This lesson is an introduction to computer science and its fields.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/sample-video.mp4",
                         "comments": [
                             {
                                 "id": 1,
@@ -80,7 +80,7 @@
                         "id": 3,
                         "name": "Introduction to Programming",
                         "description": "This lesson is an introduction to programming.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/intro.mp4",
                         "exam": {
                             "id": 101,
                             "title": "Introduction to Programming Quiz",
@@ -154,7 +154,7 @@
                         "id": 4,
                         "name": "Code editor installation",
                         "description": "This lesson is an introduction to programming.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/sample-video.mp4",
                         "comments": [
                             {
                                 "id": 1,
@@ -179,7 +179,7 @@
                         "id": 1,
                         "name": "The components of a computer",
                         "description": "This lesson is an introduction to the components of a computer.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/intro.mp4",
                         "comments": [
                             {
                                 "id": 1,
@@ -205,7 +205,7 @@
                         "id": 2,
                         "name": "Computer Science and its fields",
                         "description": "This lesson is an introduction to computer science and its fields.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/want-to-work.mp4",
                         "comments": [
                             {
                                 "id": 1,
@@ -239,7 +239,7 @@
                         "id": 3,
                         "name": "Introduction to Programming",
                         "description": "This lesson is an introduction to programming.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/sample-video.mp4",
                         "comments": [
                             {
                                 "id": 1,
@@ -257,7 +257,7 @@
                         "id": 4,
                         "name": "Code editor installation",
                         "description": "This lesson is an introduction to programming.",
-                        "url": "https://ik.imagekit.io/courseapp/intro.mp4",
+                        "url": "https://demo-video.pages.dev/intro.mp4",
                         "exam": {
                             "id": 101,
                             "title": "Introduction to Programming Quiz",
