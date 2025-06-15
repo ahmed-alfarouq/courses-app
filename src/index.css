@@ -24,6 +24,7 @@ body {
   --font-spartan: "Spartan", ui-sans-serif, sans-serif;
   --font-ge-ss-two: "GE SS Two", serif;
   --color-primary: #41b69d;
+  --color-gray: #808080;
   --color-primary-text: #6c6c6c;
   --color-secondary-text: #939393;
 }
