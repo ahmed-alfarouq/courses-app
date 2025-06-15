@@ -38,6 +38,13 @@ export interface Lesson {
   updatedAt: string;
 }
 
+export interface CourseSection {
+  id: number;
+  title: string;
+  description: string;
+  lessons: Lesson[];
+}
+
 export interface Course {
   id: number;
   name: string;
@@ -49,7 +56,7 @@ export interface Course {
   price: number;
   enrolled_students: number;
   image: string;
-  lessons: Lesson[];
+  sections: CourseSection[];
   createdAt: string;
   updatedAt: string;
 }
@@ -62,4 +69,35 @@ export interface BreadcrumbItem {
 
 export interface BreadcrumbProps {
   items: BreadcrumbItem[];
+}
+
+export interface VideoBarProps {
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+  played: boolean;
+  paused: boolean;
+  toggleVideo: () => void;
+  currentTime: number;
+  duration: number;
+  toggleFullScreen: () => void;
+}
+export interface VolumeControlProps {
+  value: number;
+  toggleMute: () => void;
+  onChange: (percent: number) => void;
+}
+
+export interface VideoProgressBarProps {
+  currentValue: number;
+  direction?: "vertical" | "horizontal";
+  barClassName?: string;
+  innerBarClassName?: string;
+  indicatorClassName?: string;
+  onChange: (percent: number) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLDivElement>) => void;
+}
+
+export interface SeekBarProps {
+  currentTime: number;
+  duration: number;
+  onSeek: (time: number) => void;
 }
