@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import IconButton from "../components/IconButton";
 import VideoPlayer from "../components/VideoPlayer";
-import Comments from "../features/comments/Comments";
 import ErrorOverlay from "../components/ErrorOverlay";
 import JumpIconLink from "../components/JumpIconLink";
 import CommentForm from "../features/comments/CommentForm";
+
+import { Comments } from "../features/comments";
 import { CourseMaterialBox } from "../features/courseMaterials";
 
 import { useCoursesContext } from "../context/coursesContext";
@@ -15,6 +16,7 @@ import { useCoursesContext } from "../context/coursesContext";
 import { IoBookSharp } from "react-icons/io5";
 import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
+import Sections from "../features/courseDetails/Sections";
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -62,7 +64,7 @@ const CourseDetails = () => {
         </div>
       </header>
       <main className="py-3 px-3 md:px-12 3xl:px-0">
-        <div className="3xl:container 3xl:mx-auto flex gap-2 flex-col md:flex-row">
+        <div className="3xl:container 3xl:mx-auto flex gap-5 flex-col md:flex-row md:justify-between">
           <section className="w-full md:w-3/5">
             <VideoPlayer url={currentUrl} />
             <section className="flex items-center gap-4 mt-4">
@@ -103,7 +105,7 @@ const CourseDetails = () => {
               <CommentForm />
             </section>
           </section>
-          <section>sidebar</section>
+          <Sections course={course} />
         </div>
       </main>
     </section>

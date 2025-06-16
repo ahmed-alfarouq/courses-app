@@ -1,3 +1,5 @@
+type LessonType = "video" | "exam" | "pdf";
+
 export interface CourseComment {
   id: number;
   name: string;
@@ -15,32 +17,28 @@ export interface AnswerOption {
 export interface ExamQuestion {
   id: number;
   question: string;
+  type: "multiple-choice";
   options: AnswerOption[];
-  correctOptionId: number;
-}
-
-export interface Exam {
-  id: number;
-  title: string;
-  duration: string;
-  passingScore: string;
-  questions: ExamQuestion[];
+  correctOptionId: string;
 }
 
 export interface Lesson {
   id: number;
   name: string;
+  type?: LessonType;
   description: string;
-  url: string;
+  url?: string;
+  duration?: string;
+  exam?: ExamQuestion[];
   comments: CourseComment[];
-  exam?: Exam;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface CourseSection {
+export interface CourseSectionProps {
   id: number;
   title: string;
+  period: string;
   description: string;
   lessons: Lesson[];
 }
@@ -57,7 +55,7 @@ export interface Course {
   enrolled_students: number;
   has_certification: boolean;
   image: string;
-  sections: CourseSection[];
+  sections: CourseSectionProps[];
   createdAt: string;
   updatedAt: string;
 }
