@@ -1,10 +1,18 @@
-import { CourseSection } from ".";
+import { cn } from "@sglara/cn";
+
+import CourseSection from "./CourseSection";
 
 import type { Course } from "../../types";
 
-const CourseSections = ({ course }: { course: Course }) => {
+const CourseSections = ({
+  course,
+  className,
+}: {
+  course: Course;
+  className?: string;
+}) => {
   return (
-    <section>
+    <section className={cn(className)}>
       <h2 className="font-semibold text-2xl md:text-[27px] mb-4">
         Topics for This Course
       </h2>

@@ -6,13 +6,13 @@ import IconButton from "../components/IconButton";
 import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
 import JumpIconLink from "../components/JumpIconLink";
-import CommentForm from "../features/comments/CommentForm";
 
-import { Comments } from "../features/comments";
+import { CommentsSection } from "../features/comments";
 import { CourseSections } from "../features/courseSection";
 import { CourseMaterialBox } from "../features/courseMaterials";
 
 import { useCoursesContext } from "../context/coursesContext";
+import { useMobileContext } from "../context/mobileContext";
 
 import { IoBookSharp } from "react-icons/io5";
 import { MdLeaderboard } from "react-icons/md";
@@ -35,6 +35,7 @@ const CourseDetails = () => {
 
   const { id } = useParams<{ id: string }>();
   const { courses } = useCoursesContext();
+  const { isMobile } = useMobileContext();
 
   const course = useMemo(() => {
     if (!courses || !id) return null;
@@ -97,15 +98,10 @@ const CourseDetails = () => {
               </h2>
               <CourseMaterialBox course={course} />
             </section>
-            <section className="mt-10">
-              <h2 className="font-semibold text-2xl md:text-[27px]">
-                Comments
-              </h2>
-              <Comments comments={currentComments} />
-              <CommentForm />
-            </section>
+            {isMobile && <CourseSections course={course} className="mt-10" />}
+            <CommentsSection comments={currentComments} />
           </section>
-          <CourseSections course={course} />
+          {!isMobile && <CourseSections course={course} />}
         </div>
       </main>
     </section>
