@@ -9,6 +9,7 @@ import JumpIconLink from "../components/JumpIconLink";
 import CommentForm from "../features/comments/CommentForm";
 
 import { Comments } from "../features/comments";
+import { CourseSections } from "../features/courseSection";
 import { CourseMaterialBox } from "../features/courseMaterials";
 
 import { useCoursesContext } from "../context/coursesContext";
@@ -16,7 +17,6 @@ import { useCoursesContext } from "../context/coursesContext";
 import { IoBookSharp } from "react-icons/io5";
 import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
-import Sections from "../features/courseDetails/Sections";
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -105,7 +105,7 @@ const CourseDetails = () => {
               <CommentForm />
             </section>
           </section>
-          <Sections course={course} />
+          <CourseSections course={course} />
         </div>
       </main>
     </section>

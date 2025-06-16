@@ -1,8 +1,8 @@
-import { CourseSection } from "../courseSection";
+import { CourseSection } from ".";
 
 import type { Course } from "../../types";
 
-const Sections = ({ course }: { course: Course }) => {
+const CourseSections = ({ course }: { course: Course }) => {
   return (
     <section>
       <h2 className="font-semibold text-2xl md:text-[27px] mb-4">
@@ -17,4 +17,4 @@ const Sections = ({ course }: { course: Course }) => {
   );
 };
 
-export default Sections;
+export default CourseSections;
