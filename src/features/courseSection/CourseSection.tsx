@@ -3,7 +3,7 @@ import { cn } from "@sglara/cn";
 
 import CourseSectionItem from "./CourseSectionItem";
 
-import { BsDash } from "react-icons/bs";
+import { BsDash, BsPlus } from "react-icons/bs";
 
 import { useMobileContext } from "../../context/MobileContext";
 
@@ -57,7 +57,7 @@ const CourseSection = ({
             className="cursor-pointer"
             onClick={handleToggleSection}
           >
-            <BsDash size={18} />
+            {isOpened ? <BsDash size={18} /> : <BsPlus size={18} />}
           </button>
         )}
       </header>
