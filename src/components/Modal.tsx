@@ -22,7 +22,7 @@ const Modal = ({ children, isOpened, close }: ModalProps) => {
         onClick={close}
       ></button>
 
-      <div className="relative bg-white rounded px-3 pt-12 pb-2 h-[calc(100vh-20px)] w-full md:w-1/2 z-[120]">
+      <div className="relative bg-white rounded px-3 pt-12 pb-2 h-[calc(100vh-5%)] w-full md:w-1/2 z-[120]">
         <button
           type="button"
           aria-label="close modal"
