@@ -21,6 +21,7 @@ body {
 }
 
 @theme {
+  --breakpoint-3xl: 2314px;
   --font-spartan: "Spartan", ui-sans-serif, sans-serif;
   --font-ge-ss-two: "GE SS Two", serif;
   --color-primary: #41b69d;
