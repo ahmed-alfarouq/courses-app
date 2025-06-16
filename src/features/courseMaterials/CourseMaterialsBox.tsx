@@ -48,7 +48,7 @@ const CourseMaterialsBox = ({ course }: { course: Course }) => {
         />
         <CourseMaterialItem
           icon={<PiCertificate size={20} />}
-          title="Shareable Certificate"
+          title="Certificate"
           description={course.has_certification ? "Yes" : "No"}
         />
       </div>
