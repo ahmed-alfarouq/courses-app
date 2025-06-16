@@ -15,7 +15,7 @@ import { getCourses } from "./lib/api/courses";
 
 // Types
 import type { Course } from "./types";
-import MobileContext from "./context/mobileContext";
+import MobileContext from "./context/MobileContext";
 
 const App = () => {
   const [courses, setCourses] = useState<Course[] | undefined>();
