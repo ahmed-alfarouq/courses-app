@@ -1,4 +1,4 @@
-export interface Comment {
+export interface CourseComment {
   id: number;
   name: string;
   avatar: string;
@@ -32,7 +32,7 @@ export interface Lesson {
   name: string;
   description: string;
   url: string;
-  comments: Comment[];
+  comments: CourseComment[];
   exam?: Exam;
   createdAt: string;
   updatedAt: string;
