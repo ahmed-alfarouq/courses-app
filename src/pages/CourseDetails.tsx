@@ -150,7 +150,7 @@ const CourseDetails = () => {
       <main className="py-3 px-3 md:px-12 3xl:px-0">
         <div className="3xl:container 3xl:mx-auto flex gap-5 flex-col md:flex-row md:justify-between">
           <section className="w-full md:w-3/5">
-            {currentLessonType === "video" && !isMobile && (
+            {currentLessonType === "video" && (
               <VideoPlayer url={currentUrl} onVideoEnd={handleOnVideoEnd} />
             )}
             <section className="flex items-center gap-4 mt-4">
