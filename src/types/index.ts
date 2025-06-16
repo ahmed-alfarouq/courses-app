@@ -128,3 +128,16 @@ export interface IconButtonProps {
   onClick?: () => void;
   className?: string;
 }
+
+export interface ModalProps {
+  children: React.ReactNode;
+  isOpened: boolean;
+  close: () => void;
+}
+
+export interface PDFSectionProps {
+  title: string;
+  description: string;
+  url: string;
+  startNextLesson?: () => void;
+}
