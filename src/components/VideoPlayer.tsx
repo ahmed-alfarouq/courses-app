@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { cn } from "@sglara/cn";
 
 import VideoBar from "./videoPlayer/VideoBar";
 import PlayButton from "./videoPlayer/PlayButton";
@@ -7,10 +8,14 @@ import BufferingLoader from "./videoPlayer/BufferingLoader";
 
 const VideoPlayer = ({
   url,
+  className,
   onVideoEnd,
+  onWideToggle,
 }: {
   url: string;
+  className?: string;
   onVideoEnd?: () => void;
+  onWideToggle?: () => void;
 }) => {
   const [videoPlayed, setVideoPlayed] = useState<boolean>(false);
   const [videoPaused, setVideoPaused] = useState<boolean>(false);
@@ -27,9 +32,7 @@ const VideoPlayer = ({
     const video = videoRef.current;
 
     if (video) {
-      console.log(video.currentTime);
       if (video.paused) {
-        console.log("paused");
         if (currentTime === duration && currentTime !== 0) {
           video.currentTime = 0;
           setCurrentTime(0);
@@ -96,16 +99,18 @@ const VideoPlayer = ({
   }, []);
 
   return (
-    <div className="relative rounded-md overflow-hidden" ref={containerRef}>
+    <div
+      className={cn("relative rounded-md overflow-hidden", className)}
+      ref={containerRef}
+    >
       {error && <ErrorHandler message={error} />}
       {(isWaiting || !canPlay) && <BufferingLoader />}
       <button
         type="button"
-        className="absolute inset-0"
+        className="absolute inset-0 z-40 cursor-pointer"
         onClick={handleToggleVideo}
         onDoubleClick={handleToggleFullScreen}
-        aria-hidden="true"
-        tabIndex={-1}
+        aria-label={`${videoPaused ? "Play Video" : "Pause video"}`}
       ></button>
       <video
         src={url}
@@ -134,6 +139,7 @@ const VideoPlayer = ({
         currentTime={currentTime}
         duration={duration}
         toggleFullScreen={handleToggleFullScreen}
+        toggleWideScreen={onWideToggle}
       />
     </div>
   );
