@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import type { Course } from "../types";
 
 const CourseCard = ({ course }: { course: Course }) => {
+  const firstLesson = course.sections[0].lessons[0];
+
   return (
     <div className="rounded-md bg-[#1b1b1b] overflow-hidden">
-      <Link to={`/courses/${course.id}`}>
+      <Link to={`/courses/${course.id}/${firstLesson.id}`}>
         <img src={course.image} alt={course.name} className="w-full" />
       </Link>
       <div className="py-8 px-5">

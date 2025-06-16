@@ -46,7 +46,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<CourseDetails />} />
+            <Route path="/courses/:id" element={<CourseDetails />}>
+              <Route path=":lesson_id" element={<CourseDetails />} />
+            </Route>
           </Routes>
         </BrowserRouter>
         <ErrorOverlay message={error} />

@@ -178,7 +178,7 @@
                 "description": "Start with the basics of Computer Science",
                 "lessons": [
                     {
-                        "id": 1,
+                        "id": 145,
                         "type": "video",
                         "name": "The components of a computer",
                         "description": "This lesson is an introduction to the components of a computer.",
@@ -205,7 +205,7 @@
                         "updatedAt": "2021-01-01"
                     },
                     {
-                        "id": 2,
+                        "id": 257,
                         "type": "pdf",
                         "name": "Overview of the components of a computer",
                         "description": "This lesson provides an overview of the main components of a computer.",
@@ -241,7 +241,7 @@
                         "updatedAt": "2021-01-01"
                     },
                     {
-                        "id": 3,
+                        "id": 372,
                         "type": "exam",
                         "name": "Exam: Components of a Computer",
                         "description": "This is an exam to assess your understanding of computer components.",
@@ -310,7 +310,7 @@
                         "updatedAt": "2021-01-01"
                     },
                     {
-                        "id": 4,
+                        "id": 45425,
                         "type": "video",
                         "name": "Code Editor Installation",
                         "description": "This lesson guides you through installing a code editor to begin programming.",
@@ -337,7 +337,7 @@
                 "description": "Start with the basics of Programming",
                 "lessons": [
                     {
-                        "id": 1,
+                        "id": 10,
                         "type": "video",
                         "name": "The components of a computer",
                         "description": "This lesson is an introduction to the components of a computer.",
@@ -364,7 +364,7 @@
                         "updatedAt": "2021-01-01"
                     },
                     {
-                        "id": 2,
+                        "id": 20,
                         "type": "pdf",
                         "name": "Overview of the components of a computer",
                         "description": "This lesson provides an overview of the main components of a computer.",
@@ -400,7 +400,7 @@
                         "updatedAt": "2021-01-01"
                     },
                     {
-                        "id": 3,
+                        "id": 30,
                         "type": "exam",
                         "name": "Exam: Components of a Computer",
                         "description": "This is an exam to assess your understanding of computer components.",
@@ -469,7 +469,7 @@
                         "updatedAt": "2021-01-01"
                     },
                     {
-                        "id": 4,
+                        "id": 40,
                         "type": "video",
                         "name": "Code Editor Installation",
                         "description": "This lesson guides you through installing a code editor to begin programming.",

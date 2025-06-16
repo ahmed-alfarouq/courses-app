@@ -20,7 +20,11 @@ const CourseSections = ({
       <StudentProgress percent={10} />
       <section className="space-y-8">
         {course.sections.map((section) => (
-          <CourseSection key={section.id} section={section} />
+          <CourseSection
+            key={section.id}
+            section={section}
+            courseId={course.id}
+          />
         ))}
       </section>
     </section>

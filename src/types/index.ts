@@ -60,6 +60,11 @@ export interface Course {
   updatedAt: string;
 }
 
+export interface StudentProgressProps {
+  completedLessons: number[];
+  unlockedLessons: number[];
+}
+
 // Components
 export interface BreadcrumbItem {
   label: string;

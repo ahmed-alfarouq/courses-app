@@ -5,11 +5,17 @@ import CourseSectionItem from "./CourseSectionItem";
 
 import { BsDash } from "react-icons/bs";
 
-import { useMobileContext } from "../../context/mobileContext";
+import { useMobileContext } from "../../context/MobileContext";
 
-import type { CourseSectionProps } from "../../types";
+import type { CourseSectionProps, StudentProgressProps } from "../../types";
 
-const CourseSection = ({ section }: { section: CourseSectionProps }) => {
+const CourseSection = ({
+  section,
+  courseId,
+}: {
+  section: CourseSectionProps;
+  courseId: number;
+}) => {
   const { isMobile } = useMobileContext();
 
   const [isOpened, setIsOpened] = useState(!isMobile);
@@ -20,12 +26,12 @@ const CourseSection = ({ section }: { section: CourseSectionProps }) => {
   };
 
   useEffect(() => {
-    const reachedLessons = localStorage.getItem("reachedLesson");
-    if (reachedLessons) {
-      const parsedData = JSON.parse(reachedLessons);
-      setOpenedLessons(parsedData);
+    const stored = localStorage.getItem(`progress-${courseId}`);
+    if (stored) {
+      const parsedData: StudentProgressProps = JSON.parse(stored);
+      setOpenedLessons(parsedData.unlockedLessons);
     }
-  }, []);
+  }, [courseId]);
 
   return (
     <section className="py-4 px-5 space-y-3 border border-primary-border">
