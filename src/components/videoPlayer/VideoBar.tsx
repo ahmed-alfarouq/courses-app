@@ -18,6 +18,7 @@ const VideoBar = ({
   duration,
   currentTime,
   toggleFullScreen,
+  toggleWideScreen,
 }: VideoBarProps) => {
   const [volume, setVolume] = useState(100);
 
@@ -109,9 +110,11 @@ const VideoBar = ({
           video.currentTime -= 5;
           break;
         case "arrowup":
+          e.preventDefault();
           handleIncreaseVolume();
           break;
         case "arrowdown":
+          e.preventDefault();
           handleDecreaseVolume();
           break;
       }
@@ -142,7 +145,9 @@ const VideoBar = ({
         onSeek={handleSeek}
       />
       <DurationDisplay duration={duration} currentTime={currentTime} />
-      <WideScreenToggle />
+      {toggleWideScreen && (
+        <WideScreenToggle toggleWideScreen={toggleWideScreen} />
+      )}
       <FullScreenToggle toggle={toggleFullScreen} />
     </div>
   );
