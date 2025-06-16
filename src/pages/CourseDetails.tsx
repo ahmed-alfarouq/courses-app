@@ -1,10 +1,13 @@
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb";
 import IconButton from "../components/IconButton";
 import VideoPlayer from "../components/VideoPlayer";
+import Comments from "../features/comments/Comments";
 import ErrorOverlay from "../components/ErrorOverlay";
 import JumpIconLink from "../components/JumpIconLink";
+import CommentForm from "../features/comments/CommentForm";
 import { CourseMaterialBox } from "../features/courseMaterials";
 
 import { useCoursesContext } from "../context/coursesContext";
@@ -13,26 +16,40 @@ import { IoBookSharp } from "react-icons/io5";
 import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
 
+const breadcrumbItems = [
+  { label: "Home", to: "/" },
+  {
+    label: "Courses",
+    to: "/courses",
+  },
+  {
+    label: "Course Details",
+  },
+];
+
 const CourseDetails = () => {
+  const [currentLesson, setCurrentLesson] = useState(0);
+  const [currentSection, setCurrentSection] = useState(0);
+
   const { id } = useParams<{ id: string }>();
   const { courses } = useCoursesContext();
 
+  const course = useMemo(() => {
+    if (!courses || !id) return null;
+    return courses.find((c) => c.id === Number(id)) || null;
+  }, [courses, id]);
+
+  const currentLessonData = useMemo(() => {
+    if (!course) return null;
+    return course.sections?.[currentSection]?.lessons?.[currentLesson] || null;
+  }, [course, currentSection, currentLesson]);
+
+  const currentUrl = currentLessonData?.url || "";
+  const currentComments = currentLessonData?.comments || [];
+
   if (!courses) return null;
 
-  const course = courses.find((course) => course.id === Number(id));
-
   if (!course) return <ErrorOverlay message="Course Not Found!" />;
-
-  const breadcrumbItems = [
-    { label: "Home", to: "/" },
-    {
-      label: "Courses",
-      to: "/courses",
-    },
-    {
-      label: "Course Details",
-    },
-  ];
 
   return (
     <section>
@@ -47,7 +64,7 @@ const CourseDetails = () => {
       <main className="py-3 px-3 md:px-12 3xl:px-0">
         <div className="3xl:container 3xl:mx-auto flex gap-2 flex-col md:flex-row">
           <section className="w-full md:w-3/5">
-            <VideoPlayer url={course.sections[0].lessons[0].url} />
+            <VideoPlayer url={currentUrl} />
             <section className="flex items-center gap-4 mt-4">
               <JumpIconLink
                 toolTipId="curriculm"
@@ -65,13 +82,11 @@ const CourseDetails = () => {
                 toolTipId="q&a"
                 icon={<FaQuestion size={18} />}
                 ariaLabel="open Q&A"
-                onClick={() => {}}
               />
               <IconButton
                 toolTipId="leaderboard"
                 icon={<MdLeaderboard size={18} />}
                 ariaLabel="open leaderboard"
-                onClick={() => {}}
               />
             </section>
             <section className="mt-10">
@@ -79,6 +94,13 @@ const CourseDetails = () => {
                 Course Materials
               </h2>
               <CourseMaterialBox course={course} />
+            </section>
+            <section className="mt-10">
+              <h2 className="font-semibold text-2xl md:text-[27px]">
+                Comments
+              </h2>
+              <Comments comments={currentComments} />
+              <CommentForm />
             </section>
           </section>
           <section>sidebar</section>
