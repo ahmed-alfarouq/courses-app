@@ -11,7 +11,9 @@ const CourseCard = ({ course }: { course: Course }) => {
       </Link>
       <div className="py-8 px-5">
         <h2 className="font-bold text-2xl text-[#f9f9f9]">
-          <Link to={`/courses/${course.id}`}>{course.name}</Link>
+          <Link to={`/courses/${course.id}/${firstLesson.id}`}>
+            {course.name}
+          </Link>
         </h2>
         <span className="text-sm font-medium text-[#939393]">
           {course.instructor}
