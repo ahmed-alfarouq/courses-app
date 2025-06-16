@@ -53,9 +53,8 @@ const ProgressBar = ({
     setBarPosition(e.nativeEvent);
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = () => {
     mouseDownRef.current = true;
-    setBarPosition(e.nativeEvent);
   };
 
   const handleMouseUp = useCallback(() => {
@@ -85,10 +84,12 @@ const ProgressBar = ({
     document.addEventListener("mouseup", handleMouseUp);
     document.addEventListener("touchend", handleMouseUp);
     document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("touchmove", handleMouseMove);
     return () => {
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("touchend", handleMouseUp);
       document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("touchmove", handleMouseMove);
     };
   }, [handleMouseMove, handleMouseUp]);
 
