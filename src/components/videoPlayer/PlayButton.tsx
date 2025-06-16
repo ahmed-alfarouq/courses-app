@@ -4,11 +4,13 @@ const PlayButton = ({ toggleVideo }: { toggleVideo: () => void }) => {
   return (
     <button
       type="button"
-      className="absolute top-1/2 left-1/2 -translate-1/2 bg-white rounded-full p-5 cursor-pointer"
+      className="absolute inset-0 flex justify-center items-center bg-black/70 z-50 cursor-pointer"
       onClick={toggleVideo}
       aria-label="Play video"
     >
-      <FaPlay className="size-5 text-[#e54860]" />
+      <span className="block bg-white rounded-full p-5 ">
+        <FaPlay className="size-5 text-[#e54860]" />
+      </span>
     </button>
   );
 };
