@@ -79,6 +79,7 @@ export interface VideoBarProps {
   currentTime: number;
   duration: number;
   toggleFullScreen: () => void;
+  toggleWideScreen?: () => void;
 }
 export interface VolumeControlProps {
   value: number;
