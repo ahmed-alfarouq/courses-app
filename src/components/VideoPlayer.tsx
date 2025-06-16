@@ -33,7 +33,7 @@ const VideoPlayer = ({
 
     if (video) {
       if (video.paused) {
-        if (currentTime === duration && currentTime !== 0) {
+        if (currentTime === duration && currentTime !== 0 && duration !== 0) {
           video.currentTime = 0;
           setCurrentTime(0);
         }
@@ -42,7 +42,7 @@ const VideoPlayer = ({
         video.pause();
       }
     }
-  }, []);
+  }, [currentTime, duration]);
 
   const handleCanPlay = () => setCanPlay(true);
 
