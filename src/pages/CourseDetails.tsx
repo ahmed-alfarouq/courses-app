@@ -8,6 +8,7 @@ import ErrorOverlay from "../components/ErrorOverlay";
 import JumpIconLink from "../components/JumpIconLink";
 
 import PDFSection from "../features/PDFSection";
+import ExamSection from "../features/ExamSection";
 import { CommentsSection } from "../features/comments";
 import { CourseSections } from "../features/courseSection";
 import { CourseMaterialBox } from "../features/courseMaterials";
@@ -20,7 +21,6 @@ import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
 
 import type { Lesson, StudentProgressProps } from "../types";
-
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -160,6 +160,13 @@ const CourseDetails = () => {
                 title={currentLessonData.name}
                 description={currentLessonData.description}
                 url={currentUrl}
+                startNextLesson={startNextLesson}
+              />
+            )}
+            {currentLessonType === "exam" && (
+              <ExamSection
+                title={currentLessonData.name}
+                description={currentLessonData.description}
                 startNextLesson={startNextLesson}
               />
             )}

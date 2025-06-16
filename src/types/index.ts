@@ -141,3 +141,9 @@ export interface PDFSectionProps {
   url: string;
   startNextLesson?: () => void;
 }
+
+export interface ExamSectionProps {
+  title: string;
+  description: string;
+  startNextLesson?: () => void;
+}
