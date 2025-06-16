@@ -1,4 +1,3 @@
-import type { Course } from "../../types";
 import CourseMaterialItem from "./CourseMaterialItem";
 
 import { TbBooks } from "react-icons/tb";
@@ -10,6 +9,8 @@ import {
   PiCertificate,
 } from "react-icons/pi";
 
+import type { Course } from "../../types";
+
 const CourseMaterialsBox = ({ course }: { course: Course }) => {
   const lessons = course.sections.reduce((acc, section) => {
     return acc + section.lessons.length;
@@ -19,7 +20,7 @@ const CourseMaterialsBox = ({ course }: { course: Course }) => {
     <section className="w-full bg-white p-6 mt-2 rounded-md shadow flex flex-col md:flex-row justify-between gap-5">
       <div className="flex flex-col gap-5 md:gap-3 w-full md:w-[45%]">
         <CourseMaterialItem
-          icon={<CiClock2 size={20} overlineThickness={150} />}
+          icon={<CiClock2 size={20} />}
           title="Duration"
           description={course.duration}
         />
