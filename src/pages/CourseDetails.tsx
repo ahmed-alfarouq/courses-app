@@ -17,7 +17,10 @@ const CourseDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { courses } = useCoursesContext();
 
-  const course = courses?.find((course) => course.id === Number(id));
+  if (!courses) return null;
+
+  const course = courses.find((course) => course.id === Number(id));
+
   if (!course) return <ErrorOverlay message="Course Not Found!" />;
 
   const breadcrumbItems = [
