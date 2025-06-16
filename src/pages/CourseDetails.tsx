@@ -1,10 +1,16 @@
 import { useParams } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb";
+import IconButton from "../components/IconButton";
 import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
+import JumpIconLink from "../components/JumpIconLink";
 
 import { useCoursesContext } from "../context/coursesContext";
+
+import { IoBookSharp } from "react-icons/io5";
+import { MdLeaderboard } from "react-icons/md";
+import { FaComments, FaQuestion } from "react-icons/fa";
 
 const CourseDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,6 +44,32 @@ const CourseDetails = () => {
         <div className="3xl:container 3xl:mx-auto flex gap-2 flex-col md:flex-row">
           <section className="w-full md:w-3/5">
             <VideoPlayer url={course.sections[0].lessons[0].url} />
+            <section className="flex items-center gap-4 mt-4">
+              <JumpIconLink
+                toolTipId="curriculm"
+                to="#curriculm"
+                icon={<IoBookSharp size={18} />}
+                ariaLabel="go to curriculm"
+              />
+              <JumpIconLink
+                toolTipId="comments"
+                to="#comments"
+                icon={<FaComments size={18} />}
+                ariaLabel="go to comments"
+              />
+              <IconButton
+                toolTipId="q&a"
+                icon={<FaQuestion size={18} />}
+                ariaLabel="open Q&A"
+                onClick={() => {}}
+              />
+              <IconButton
+                toolTipId="leaderboard"
+                icon={<MdLeaderboard size={18} />}
+                ariaLabel="open leaderboard"
+                onClick={() => {}}
+              />
+            </section>
           </section>
           <section>sidebar</section>
         </div>

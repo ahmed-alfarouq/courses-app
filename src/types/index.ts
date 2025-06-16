@@ -102,3 +102,25 @@ export interface SeekBarProps {
   duration: number;
   onSeek: (time: number) => void;
 }
+
+export interface ToolTipProps {
+  id: string;
+  text: string;
+  className?: string;
+}
+
+export interface JumpIconLinkProps {
+  toolTipId?: string;
+  to: string;
+  icon: React.ReactNode;
+  ariaLabel: string;
+  className?: string;
+}
+
+export interface IconButtonProps {
+  toolTipId?: string;
+  icon: React.ReactNode;
+  ariaLabel: string;
+  onClick?: () => void;
+  className?: string;
+}
