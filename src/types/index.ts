@@ -55,6 +55,7 @@ export interface Course {
   isFree: boolean;
   price: number;
   enrolled_students: number;
+  has_certification: boolean;
   image: string;
   sections: CourseSection[];
   createdAt: string;

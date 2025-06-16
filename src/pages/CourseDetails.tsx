@@ -5,6 +5,7 @@ import IconButton from "../components/IconButton";
 import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
 import JumpIconLink from "../components/JumpIconLink";
+import { CourseMaterialBox } from "../features/courseMaterials";
 
 import { useCoursesContext } from "../context/coursesContext";
 
@@ -69,6 +70,12 @@ const CourseDetails = () => {
                 ariaLabel="open leaderboard"
                 onClick={() => {}}
               />
+            </section>
+            <section className="mt-10">
+              <h2 className="font-semibold text-2xl md:text-[27px]">
+                Course Materials
+              </h2>
+              <CourseMaterialBox course={course} />
             </section>
           </section>
           <section>sidebar</section>

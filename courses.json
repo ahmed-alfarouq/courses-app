@@ -9,6 +9,7 @@
         "isFree": false,
         "price": 100,
         "enrolled_students": 50,
+        "has_certification": true,
         "image": "https://i.ytimg.com/vi/2mySUIR9k20/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDMNz0Cj46RKcgbWBEJR-5l5BCBLw",
         "sections": [
             {
