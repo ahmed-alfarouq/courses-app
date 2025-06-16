@@ -87,12 +87,23 @@ const VideoPlayer = ({
     }
   };
 
-  const handleToggleFullScreen = useCallback(() => {
+  const handleToggleFullScreen = useCallback(async () => {
     const container = containerRef.current;
     if (!container) return;
 
     if (!document.fullscreenElement) {
-      container.requestFullscreen();
+      await container.requestFullscreen();
+      if (
+        screen.orientation &&
+        "lock" in screen.orientation &&
+        typeof screen.orientation.lock === "function"
+      ) {
+        try {
+          await screen.orientation.lock("landscape");
+        } catch (err) {
+          console.warn(err);
+        }
+      }
     } else {
       document.exitFullscreen();
     }
