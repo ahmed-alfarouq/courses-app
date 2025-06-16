@@ -7,6 +7,7 @@ import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
 import JumpIconLink from "../components/JumpIconLink";
 
+import PDFSection from "../features/PDFSection";
 import { CommentsSection } from "../features/comments";
 import { CourseSections } from "../features/courseSection";
 import { CourseMaterialBox } from "../features/courseMaterials";
@@ -19,6 +20,7 @@ import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
 
 import type { Lesson, StudentProgressProps } from "../types";
+
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -88,7 +90,7 @@ const CourseDetails = () => {
   if (!course || !currentLessonData)
     return <ErrorOverlay message="Course/Lesson Not Found!" />;
 
-  const handleOnVideoEnd = () => {
+  const startNextLesson = () => {
     if (!currentLessonData) return;
 
     const storageName = `progress-${id}`;
@@ -151,7 +153,15 @@ const CourseDetails = () => {
         <div className="3xl:container 3xl:mx-auto flex gap-5 flex-col md:flex-row md:justify-between">
           <section className="w-full md:w-3/5">
             {currentLessonType === "video" && (
-              <VideoPlayer url={currentUrl} onVideoEnd={handleOnVideoEnd} />
+              <VideoPlayer url={currentUrl} onVideoEnd={startNextLesson} />
+            )}
+            {currentLessonType === "pdf" && (
+              <PDFSection
+                title={currentLessonData.name}
+                description={currentLessonData.description}
+                url={currentUrl}
+                startNextLesson={startNextLesson}
+              />
             )}
             <section className="flex items-center gap-4 mt-4">
               <JumpIconLink
