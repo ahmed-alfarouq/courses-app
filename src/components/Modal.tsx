@@ -4,7 +4,7 @@ import { CgClose } from "react-icons/cg";
 
 import type { ModalProps } from "../types";
 
-const Modal = ({ children, isOpened, close }: ModalProps) => {
+const Modal = ({ children, isOpened, close, className }: ModalProps) => {
   return (
     <section
       role="dialog"
@@ -22,7 +22,12 @@ const Modal = ({ children, isOpened, close }: ModalProps) => {
         onClick={close}
       ></button>
 
-      <div className="relative bg-white rounded px-3 pt-12 pb-2 h-[calc(100vh-5%)] w-full md:w-1/2 z-[120]">
+      <div
+        className={cn(
+          "relative bg-white rounded px-3 pt-12 pb-2 h-[calc(100vh-5%)] w-full md:w-1/2 z-[120]",
+          className
+        )}
+      >
         <button
           type="button"
           aria-label="close modal"
