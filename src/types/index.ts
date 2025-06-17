@@ -75,6 +75,12 @@ export interface BreadcrumbProps {
   items: BreadcrumbItem[];
 }
 
+export interface AlertProps {
+  type: "success" | "warning";
+  message: string;
+  className?: string;
+}
+
 export interface VideoBarProps {
   videoRef: React.RefObject<HTMLVideoElement | null>;
   played: boolean;
