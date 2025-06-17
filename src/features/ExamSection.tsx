@@ -22,7 +22,7 @@ const ExamSection = ({
         {description}
       </p>
       <div className="flex justify-between items-center">
-        <Button type="button" text="Open File" onClick={toggleModal} />
+        <Button type="button" text="Start Exam" onClick={toggleModal} />
         {startNextLesson && (
           <Button type="button" text="Next Lesson" onClick={startNextLesson} />
         )}
