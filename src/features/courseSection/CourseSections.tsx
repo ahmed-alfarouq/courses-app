@@ -1,18 +1,16 @@
 import { useMemo } from "react";
 import { cn } from "@sglara/cn";
+import { useParams } from "react-router-dom";
 
 import CourseSection from "./CourseSection";
 import StudentProgress from "../StudentProgress";
 
-import type { Course, StudentProgressProps } from "../../types";
+import type { StudentProgressProps } from "../../types";
+import type { CourseSectionsProps } from "./CourseSections.types";
 
-const CourseSections = ({
-  course,
-  className,
-}: {
-  course: Course;
-  className?: string;
-}) => {
+const CourseSections = ({ course, className }: CourseSectionsProps) => {
+  const { lesson_id } = useParams<{ lesson_id: string }>();
+
   const calcStudentProgress = useMemo(() => {
     const stored = localStorage.getItem(`progress-${course.id}`);
     if (!stored) return 0;
@@ -25,7 +23,7 @@ const CourseSections = ({
     const completedLessonsCount = studentProgress.completedLessons.length;
 
     return Math.round((completedLessonsCount / lessonsLength) * 100);
-  }, [course.id, course.sections]);
+  }, [course.id, course.sections, lesson_id]);
 
   return (
     <section className={cn(className)}>
