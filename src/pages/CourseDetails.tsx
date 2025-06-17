@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb";
 import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
-
 
 import PDFSection from "../features/PDFSection";
 import ExamSection from "../features/ExamSection";
@@ -15,8 +15,8 @@ import useCourseLesson from "../hooks/useCourseLesson";
 
 import { useMobileContext } from "../context/MobileContext";
 
-
 import LessonActions from "../features/LessonActions";
+import Loader from "../components/Loader";
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -30,6 +30,7 @@ const breadcrumbItems = [
 ];
 
 const CourseDetails = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { isMobile } = useMobileContext();
 
   const { id, lesson_id } = useParams<{ id: string; lesson_id: string }>();
@@ -38,6 +39,14 @@ const CourseDetails = () => {
     courseId: id,
     lessonId: lesson_id,
   });
+
+  useEffect(() => {
+    if (course && currentLesson) {
+      setIsLoading(false);
+    }
+  }, [course, currentLesson]);
+
+  if (isLoading) return <Loader />;
 
   if (!course || !currentLesson)
     return <ErrorOverlay message="Course/Lesson Not Found!" />;
