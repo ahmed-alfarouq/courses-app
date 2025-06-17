@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb";
-import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
 
-import PDFSection from "../features/PDFSection";
-import ExamSection from "../features/ExamSection";
+
 import { CommentsSection } from "../features/comments";
 import { CourseSections } from "../features/courseSection";
 import { CourseMaterialBox } from "../features/courseMaterials";
@@ -17,6 +15,7 @@ import { useMobileContext } from "../context/MobileContext";
 
 import LessonActions from "../features/LessonActions";
 import Loader from "../components/Loader";
+import CourseContent from "../features/CourseContent";
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -64,27 +63,10 @@ const CourseDetails = () => {
       <main className="py-3 px-3 md:px-12 3xl:px-0">
         <div className="3xl:container 3xl:mx-auto flex gap-5 flex-col md:flex-row md:justify-between">
           <section className="w-full md:w-3/5">
-            {currentLesson.type === "video" && (
-              <VideoPlayer
-                url={currentLesson.url || ""}
-                onVideoEnd={startNextLesson}
-              />
-            )}
-            {currentLesson.type === "pdf" && (
-              <PDFSection
-                title={currentLesson.name}
-                description={currentLesson.description}
-                url={currentLesson.url || ""}
-                startNextLesson={startNextLesson}
-              />
-            )}
-            {currentLesson.type === "exam" && (
-              <ExamSection
-                title={currentLesson.name}
-                description={currentLesson.description}
-                startNextLesson={startNextLesson}
-              />
-            )}
+            <CourseContent
+              currentLesson={currentLesson}
+              startNextLesson={startNextLesson}
+            />
             <LessonActions />
             <section className="mt-10">
               <h2 className="font-semibold text-2xl md:text-[27px]">
