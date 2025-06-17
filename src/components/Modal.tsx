@@ -24,7 +24,7 @@ const Modal = ({ children, isOpened, close, className }: ModalProps) => {
 
       <div
         className={cn(
-          "relative bg-white rounded px-3 pt-12 pb-2 h-[calc(100vh-5%)] w-full md:w-1/2 z-[120]",
+          "relative bg-white rounded px-3 pt-12 pb-2 h-[calc(100vh-10%)] md:h-full w-full md:w-1/2 z-[120]",
           className
         )}
       >
