@@ -34,11 +34,12 @@ const CourseDetails = () => {
 
   const { id, lesson_id } = useParams<{ id: string; lesson_id: string }>();
 
-  const { course, currentLesson, startNextLesson } = useCourseLesson({
-    courseId: id,
-    lessonId: lesson_id,
-    setCourseCompleted,
-  });
+  const { course, currentLesson, currentSection, startNextLesson } =
+    useCourseLesson({
+      courseId: id,
+      lessonId: lesson_id,
+      setCourseCompleted,
+    });
 
   useEffect(() => {
     if (course && currentLesson) {
@@ -96,6 +97,7 @@ const CourseDetails = () => {
               <CourseMaterialBox course={course} />
               {isMobile && (
                 <CourseSections
+                  activeSectionId={currentSection?.id}
                   studentProgress={studentProgress}
                   course={course}
                   className="mt-10"
@@ -106,6 +108,7 @@ const CourseDetails = () => {
             {/* Show on theater mode */}
             {!isMobile && isTheaterMode && (
               <CourseSections
+                activeSectionId={currentSection?.id}
                 studentProgress={studentProgress}
                 course={course}
                 className="mt-4 md:w-2/5"
@@ -113,7 +116,11 @@ const CourseDetails = () => {
             )}
           </section>
           {!isMobile && !isTheaterMode && (
-            <CourseSections studentProgress={studentProgress} course={course} />
+            <CourseSections
+              activeSectionId={currentSection?.id}
+              studentProgress={studentProgress}
+              course={course}
+            />
           )}
         </div>
       </main>

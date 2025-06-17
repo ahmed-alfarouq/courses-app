@@ -11,11 +11,14 @@ import type { CourseSectionComponentProps } from "./CourseSections.types";
 
 const CourseSection = ({
   section,
+  activeSectionId,
   studentProgress,
 }: CourseSectionComponentProps) => {
   const { isMobile } = useMobileContext();
 
-  const [isOpened, setIsOpened] = useState(!isMobile);
+  const [isOpened, setIsOpened] = useState(
+    !isMobile || section.id === activeSectionId
+  );
 
   const handleToggleSection = () => {
     setIsOpened((prev) => !prev);

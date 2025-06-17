@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useCoursesContext } from "../context/coursesContext";
 
-import type { Lesson, StudentProgressProps } from "../types";
+import type { CourseSectionProps, StudentProgressProps } from "../types";
 
 const useCourseLesson = ({
   courseId,
@@ -15,7 +15,9 @@ const useCourseLesson = ({
   setCourseCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [redirect, setRedirect] = useState({ state: false, to: "" });
-  const sectionLessonsRef = useRef<Lesson[]>([]);
+  const sectionRef = useRef<(CourseSectionProps & { index: number }) | null>(
+    null
+  );
 
   const navigate = useNavigate();
   const { courses } = useCoursesContext();
@@ -36,7 +38,7 @@ const useCourseLesson = ({
   const currentLesson = useMemo(() => {
     if (!course) return null;
 
-    for (const section of course.sections) {
+    for (const [i, section] of course.sections.entries()) {
       let lessonIndex = 0;
       const lesson = section.lessons.find((l, i) => {
         if (l.id === Number(lessonId)) {
@@ -45,7 +47,7 @@ const useCourseLesson = ({
         }
       });
       if (lesson) {
-        sectionLessonsRef.current = section.lessons;
+        sectionRef.current = { ...section, index: i };
         return { ...lesson, index: lessonIndex };
       }
     }
@@ -83,17 +85,15 @@ const useCourseLesson = ({
   };
 
   const startNextLesson = () => {
-    if (!currentLesson || !course) return;
+    if (!currentLesson || !course || !sectionRef.current) return;
 
     const currentLessonId = Number(lessonId);
-    let nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
+    let nextLesson = sectionRef.current.lessons[currentLesson.index + 1];
 
     if (!nextLesson) {
-      const currentSectionIndex = course.sections.findIndex((section) =>
-        section.lessons.find((lesson) => lesson.id === currentLessonId)
-      );
-
-      const nextSection = course.sections[currentSectionIndex + 1];
+      const currentSectionIndex = sectionRef.current.index;
+      const nextSection =
+        currentSectionIndex && course.sections[currentSectionIndex + 1];
       if (!nextSection || nextSection.lessons.length === 0) {
         if (setCourseCompleted) {
           storeProgress(currentLessonId);
@@ -106,7 +106,7 @@ const useCourseLesson = ({
     }
 
     if (nextLesson.type === "pdf") {
-      nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
+      nextLesson = sectionRef.current.lessons[currentLesson.index + 1];
     }
     storeProgress(currentLessonId, nextLesson.id);
     setRedirect({ state: true, to: `/courses/${courseId}/${nextLesson.id}` });
@@ -114,7 +114,7 @@ const useCourseLesson = ({
 
   useEffect(() => {
     if (course && (!lessonId || !isLessonUnlocked)) {
-      const defaultId = course.sections[0]?.lessons[0]?.id;
+      const defaultId = course.sections[0].lessons[0].id;
       if (defaultId) {
         setRedirect({ state: true, to: `/courses/${courseId}/${defaultId}` });
       }
@@ -127,7 +127,12 @@ const useCourseLesson = ({
       navigate(redirect.to);
     }
   }, [navigate, redirect.state, redirect.to]);
-  return { course, currentLesson, startNextLesson };
+  return {
+    course,
+    currentLesson,
+    currentSection: sectionRef.current,
+    startNextLesson,
+  };
 };
 
 export default useCourseLesson;

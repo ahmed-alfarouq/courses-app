@@ -8,6 +8,7 @@ import type { CourseSectionsProps } from "./CourseSections.types";
 
 const CourseSections = ({
   course,
+  activeSectionId,
   studentProgress,
   className,
 }: CourseSectionsProps) => {
@@ -31,6 +32,7 @@ const CourseSections = ({
         {course.sections.map((section) => (
           <CourseSection
             key={section.id}
+            activeSectionId={activeSectionId}
             section={section}
             studentProgress={studentProgress}
           />
