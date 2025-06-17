@@ -6,7 +6,9 @@ import ToggleButton from "./ToggleButton";
 import VolumeControl from "./VolumeControl";
 import DurationDisplay from "./DurationDisplay";
 import FullScreenToggle from "./FullScreenToggle";
-import WideScreenToggle from "./WideScreenToggle";
+import TheaterModeButton from "./TheaterModeButton";
+
+import { useMobileContext } from "../../context/MobileContext";
 
 import type { VideoBarProps } from "../../types";
 
@@ -18,8 +20,9 @@ const VideoBar = ({
   duration,
   currentTime,
   toggleFullScreen,
-  toggleWideScreen,
+  toggleTheaterMode,
 }: VideoBarProps) => {
+  const { isMobile } = useMobileContext();
   const [volume, setVolume] = useState(100);
 
   const handleToggleMute = useCallback(() => {
@@ -145,9 +148,7 @@ const VideoBar = ({
         onSeek={handleSeek}
       />
       <DurationDisplay duration={duration} currentTime={currentTime} />
-      {toggleWideScreen && (
-        <WideScreenToggle toggleWideScreen={toggleWideScreen} />
-      )}
+      {!isMobile && <TheaterModeButton toggleTheaterMode={toggleTheaterMode} />}
       <FullScreenToggle toggle={toggleFullScreen} />
     </div>
   );

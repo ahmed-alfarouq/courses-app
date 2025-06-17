@@ -2,13 +2,13 @@ import React from "react";
 
 import { LuRectangleHorizontal } from "react-icons/lu";
 
-const WideScreenToggle = React.memo(
-  ({ toggleWideScreen }: { toggleWideScreen: () => void }) => {
+const TheaterModeButton = React.memo(
+  ({ toggleTheaterMode }: { toggleTheaterMode: () => void }) => {
     return (
       <button
         type="button"
         className="text-white cursor-pointer"
-        onClick={toggleWideScreen}
+        onClick={toggleTheaterMode}
       >
         <LuRectangleHorizontal size={16} />
       </button>
@@ -16,4 +16,4 @@ const WideScreenToggle = React.memo(
   }
 );
 
-export default WideScreenToggle;
+export default TheaterModeButton;

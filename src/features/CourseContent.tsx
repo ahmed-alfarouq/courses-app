@@ -7,9 +7,11 @@ import type { Lesson } from "../types";
 const CourseContent = ({
   currentLesson,
   startNextLesson,
+  toggleTheaterMode,
 }: {
   currentLesson: Lesson;
   startNextLesson: () => void;
+  toggleTheaterMode: () => void;
 }) => {
   return (
     <>
@@ -17,6 +19,7 @@ const CourseContent = ({
         <VideoPlayer
           url={currentLesson.url || ""}
           onVideoEnd={startNextLesson}
+          onTheaterModeToggle={toggleTheaterMode}
         />
       )}
       {currentLesson.type === "pdf" && (

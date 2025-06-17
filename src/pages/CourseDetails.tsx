@@ -1,35 +1,27 @@
-import { useEffect, useState } from "react";
+import { cn } from "@sglara/cn";
 import { useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
-import Breadcrumb from "../components/Breadcrumb";
+import Loader from "../components/Loader";
 import ErrorOverlay from "../components/ErrorOverlay";
 
-
+import LessonActions from "../features/LessonActions";
+import CourseContent from "../features/CourseContent";
 import { CommentsSection } from "../features/comments";
 import { CourseSections } from "../features/courseSection";
 import { CourseMaterialBox } from "../features/courseMaterials";
+import CourseDetailsHeader from "../features/CourseDetailsHeader";
 
 import useCourseLesson from "../hooks/useCourseLesson";
 
 import { useMobileContext } from "../context/MobileContext";
 
-import LessonActions from "../features/LessonActions";
-import Loader from "../components/Loader";
-import CourseContent from "../features/CourseContent";
-
-const breadcrumbItems = [
-  { label: "Home", to: "/" },
-  {
-    label: "Courses",
-    to: "/courses",
-  },
-  {
-    label: "Course Details",
-  },
-];
-
 const CourseDetails = () => {
+  const containerRef = useRef<HTMLElement>(null);
+
   const [isLoading, setIsLoading] = useState(true);
+  const [isTheaterMode, setIsTheaterMode] = useState(false);
+
   const { isMobile } = useMobileContext();
 
   const { id, lesson_id } = useParams<{ id: string; lesson_id: string }>();
@@ -45,6 +37,10 @@ const CourseDetails = () => {
     }
   }, [course, currentLesson]);
 
+  const toggleTheaterMode = () => {
+    setIsTheaterMode((prev) => !prev);
+  };
+
   if (isLoading) return <Loader />;
 
   if (!course || !currentLesson)
@@ -52,32 +48,35 @@ const CourseDetails = () => {
 
   return (
     <section>
-      <header className="py-3 px-3 md:px-12 3xl:px-0 bg-[#F5F9FA] space-y-1 md:space-y-4">
-        <div className="3xl:container 3xl:mx-auto">
-          <Breadcrumb items={breadcrumbItems} />
-          <h1 className="text-3xl md:text-4xl font-medium leading-9">
-            {course.name}
-          </h1>
-        </div>
-      </header>
+      <CourseDetailsHeader title={course.name} />
       <main className="py-3 px-3 md:px-12 3xl:px-0">
         <div className="3xl:container 3xl:mx-auto flex gap-5 flex-col md:flex-row md:justify-between">
-          <section className="w-full md:w-3/5">
+          <section
+            className={cn(
+              "transition-all duration-300",
+              isTheaterMode
+                ? "w-full flex flex-wrap justify-between"
+                : "block w-full md:w-3/5"
+            )}
+            ref={containerRef}
+          >
             <CourseContent
               currentLesson={currentLesson}
               startNextLesson={startNextLesson}
+              toggleTheaterMode={toggleTheaterMode}
             />
-            <LessonActions />
-            <section className="mt-10">
-              <h2 className="font-semibold text-2xl md:text-[27px]">
-                Course Materials
-              </h2>
+            <div className={cn(isTheaterMode && !isMobile && "w-[57%]")}>
+              <LessonActions />
               <CourseMaterialBox course={course} />
-            </section>
-            {isMobile && <CourseSections course={course} className="mt-10" />}
-            <CommentsSection comments={currentLesson.comments} />
+              {isMobile && <CourseSections course={course} className="mt-10" />}
+              <CommentsSection comments={currentLesson.comments} />
+            </div>
+            {/* Show on theater mode */}
+            {!isMobile && isTheaterMode && (
+              <CourseSections course={course} className="mt-4 md:w-2/5" />
+            )}
           </section>
-          {!isMobile && <CourseSections course={course} />}
+          {!isMobile && !isTheaterMode && <CourseSections course={course} />}
         </div>
       </main>
     </section>

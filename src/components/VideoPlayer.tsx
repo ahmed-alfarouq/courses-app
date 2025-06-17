@@ -10,12 +10,12 @@ const VideoPlayer = ({
   url,
   className,
   onVideoEnd,
-  onWideToggle,
+  onTheaterModeToggle,
 }: {
   url: string;
   className?: string;
   onVideoEnd?: () => void;
-  onWideToggle?: () => void;
+  onTheaterModeToggle: () => void;
 }) => {
   const [videoPlayed, setVideoPlayed] = useState<boolean>(false);
   const [videoPaused, setVideoPaused] = useState<boolean>(false);
@@ -109,9 +109,13 @@ const VideoPlayer = ({
     }
   }, []);
 
+  const handleTheaterModeToggle = useCallback(() => {
+    onTheaterModeToggle();
+  }, [onTheaterModeToggle]);
+
   return (
     <div
-      className={cn("relative rounded-md overflow-hidden", className)}
+      className={cn("relative w-full rounded-md overflow-hidden", className)}
       ref={containerRef}
     >
       {error && <ErrorHandler message={error} />}
@@ -150,7 +154,7 @@ const VideoPlayer = ({
         currentTime={currentTime}
         duration={duration}
         toggleFullScreen={handleToggleFullScreen}
-        toggleWideScreen={onWideToggle}
+        toggleTheaterMode={handleTheaterModeToggle}
       />
     </div>
   );
