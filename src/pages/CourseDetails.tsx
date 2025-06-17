@@ -42,19 +42,29 @@ const CourseDetails = () => {
     });
 
   useEffect(() => {
-    if (course && currentLesson) {
-      setIsLoading(false);
-    }
+    if (!course || !currentLesson) return;
+
+    setIsLoading(false);
 
     if (isTheaterMode && currentLesson?.type !== "video") {
       toggleTheaterMode();
     }
 
-    const stored = localStorage.getItem(`progress-${course?.id}`);
+    const storageName = `progress-${course.id}`;
+    const stored = localStorage.getItem(storageName);
+
     if (stored) {
       const parsedData: StudentProgressProps = JSON.parse(stored);
       setStudentProgress(parsedData);
+      return;
     }
+
+    const defaultProgress = {
+      completedLessons: [],
+      unlockedLessons: [currentLesson.id],
+    };
+    localStorage.setItem(storageName, JSON.stringify(defaultProgress));
+    setStudentProgress(defaultProgress);
   }, [course, currentLesson, isTheaterMode]);
 
   const toggleTheaterMode = () => {
@@ -92,7 +102,12 @@ const CourseDetails = () => {
                 className="mt-4"
               />
             )}
-            <div className={cn(isTheaterMode && !isMobile && "w-[57%]", isMobile && "w-full")}>
+            <div
+              className={cn(
+                isTheaterMode && !isMobile && "w-[57%]",
+                isMobile && "w-full"
+              )}
+            >
               <LessonActions course={course} />
               <CourseMaterialBox course={course} />
               {isMobile && (
