@@ -24,7 +24,7 @@ const CourseSectionItem = React.memo(
           onClick={scrollToTop}
         >
           <IoDocumentTextOutline size={18} className="shrink-0" />
-          <p className="text-secondary-text text-[15px]">{lesson.name}</p>
+          <p className="text-[15px]">{lesson.name}</p>
         </Link>
 
         <div className="flex flex-col gap-2 flex-1">
