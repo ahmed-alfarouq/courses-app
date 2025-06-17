@@ -60,7 +60,7 @@ const CourseSection = ({
       >
         {section.lessons.map((lesson) => {
           const isOpen =
-            !!studentProgress.completedLessons?.find((l) => l === lesson.id) ||
+            !!studentProgress.unlockedLessons?.find((l) => l === lesson.id) ||
             false;
           return (
             <CourseSectionItem
