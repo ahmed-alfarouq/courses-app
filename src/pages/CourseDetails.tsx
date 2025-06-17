@@ -93,7 +93,7 @@ const CourseDetails = () => {
               />
             )}
             <div className={cn(isTheaterMode && !isMobile && "w-[57%]", isMobile && "w-full")}>
-              <LessonActions courseId={course.id} />
+              <LessonActions course={course} />
               <CourseMaterialBox course={course} />
               {isMobile && (
                 <CourseSections

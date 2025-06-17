@@ -1,13 +1,18 @@
 import React, { useCallback, useMemo, useState } from "react";
-import IconButton from "../components/IconButton";
+
 import QAModal from "./QAModal";
+import IconButton from "../components/IconButton";
+import LeaderboardModal from "./leaderboard/LeaderboardModal";
 
 import { IoBookSharp } from "react-icons/io5";
 import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
 
-const LessonActions = React.memo(({ courseId }: { courseId: number }) => {
+import type { Course } from "../types";
+
+const LessonActions = React.memo(({ course }: { course: Course }) => {
   const [qaIsOpened, setQaIsOpened] = useState(false);
+  const [leaderboardIsOpened, setLeaderboardIsOpened] = useState(false);
 
   const bookIcon = useMemo(() => <IoBookSharp size={18} />, []);
   const commentsIcon = useMemo(() => <FaComments size={18} />, []);
@@ -30,6 +35,10 @@ const LessonActions = React.memo(({ courseId }: { courseId: number }) => {
 
   const toggleQaModal = useCallback(() => {
     setQaIsOpened((prev) => !prev);
+  }, []);
+
+  const toggleLeaderboardModal = useCallback(() => {
+    setLeaderboardIsOpened((prev) => !prev);
   }, []);
 
   return (
@@ -56,8 +65,14 @@ const LessonActions = React.memo(({ courseId }: { courseId: number }) => {
         toolTipId="leaderboard"
         icon={leaderboardIcon}
         ariaLabel="open leaderboard"
+        onClick={toggleLeaderboardModal}
       />
-      <QAModal isOpen={qaIsOpened} close={toggleQaModal} courseId={courseId} />
+      <QAModal isOpen={qaIsOpened} close={toggleQaModal} courseId={course.id} />
+      <LeaderboardModal
+        isOpen={leaderboardIsOpened}
+        close={toggleLeaderboardModal}
+        course={course}
+      />
     </section>
   );
 });
