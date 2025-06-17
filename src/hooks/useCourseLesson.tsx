@@ -123,6 +123,7 @@ const useCourseLesson = ({
 
   useEffect(() => {
     if (redirect.state) {
+      setRedirect({ state: false, to: "" });
       navigate(redirect.to);
     }
   }, [navigate, redirect.state, redirect.to]);
