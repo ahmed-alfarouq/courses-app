@@ -1,4 +1,9 @@
-import type { Course, Lesson } from "../../types";
+import type {
+  Course,
+  CourseSectionProps,
+  Lesson,
+  StudentProgressProps,
+} from "../../types";
 
 export interface CourseSectionItemProps {
   lesson: Lesson;
@@ -7,7 +12,13 @@ export interface CourseSectionItemProps {
   numOfQuestions?: number;
 }
 
+export interface CourseSectionComponentProps {
+  section: CourseSectionProps;
+  studentProgress: StudentProgressProps;
+}
+
 export interface CourseSectionsProps {
   course: Course;
+  studentProgress: StudentProgressProps;
   className?: string;
 }

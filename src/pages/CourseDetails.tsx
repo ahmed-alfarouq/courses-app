@@ -17,10 +17,16 @@ import useCourseLesson from "../hooks/useCourseLesson";
 
 import { useMobileContext } from "../context/MobileContext";
 
+import type { StudentProgressProps } from "../types";
+
 const CourseDetails = () => {
   const containerRef = useRef<HTMLElement>(null);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [studentProgress, setStudentProgress] = useState<StudentProgressProps>({
+    completedLessons: [],
+    unlockedLessons: [],
+  });
   const [courseCompleted, setCourseCompleted] = useState(false);
   const [isTheaterMode, setIsTheaterMode] = useState(false);
 
@@ -37,6 +43,12 @@ const CourseDetails = () => {
   useEffect(() => {
     if (course && currentLesson) {
       setIsLoading(false);
+    }
+
+    const stored = localStorage.getItem(`progress-${course?.id}`);
+    if (stored) {
+      const parsedData: StudentProgressProps = JSON.parse(stored);
+      setStudentProgress(parsedData);
     }
   }, [course, currentLesson]);
 
@@ -78,15 +90,27 @@ const CourseDetails = () => {
             <div className={cn(isTheaterMode && !isMobile && "w-[57%]")}>
               <LessonActions />
               <CourseMaterialBox course={course} />
-              {isMobile && <CourseSections course={course} className="mt-10" />}
+              {isMobile && (
+                <CourseSections
+                  studentProgress={studentProgress}
+                  course={course}
+                  className="mt-10"
+                />
+              )}
               <CommentsSection comments={currentLesson.comments} />
             </div>
             {/* Show on theater mode */}
             {!isMobile && isTheaterMode && (
-              <CourseSections course={course} className="mt-4 md:w-2/5" />
+              <CourseSections
+                studentProgress={studentProgress}
+                course={course}
+                className="mt-4 md:w-2/5"
+              />
             )}
           </section>
-          {!isMobile && !isTheaterMode && <CourseSections course={course} />}
+          {!isMobile && !isTheaterMode && (
+            <CourseSections studentProgress={studentProgress} course={course} />
+          )}
         </div>
       </main>
     </section>
