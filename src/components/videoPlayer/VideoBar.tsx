@@ -95,6 +95,9 @@ const VideoBar = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!video) return;
 
+      const activeTag = document.activeElement?.tagName.toLowerCase();
+      if (activeTag === "input" || activeTag === "textarea") return;
+
       switch (e.key.toLowerCase()) {
         case " ":
           e.preventDefault();
@@ -134,6 +137,7 @@ const VideoBar = ({
     handleDecreaseVolume,
     handleIncreaseVolume,
     handleToggleMute,
+    played,
     toggleFullScreen,
     toggleTheaterMode,
     toggleVideo,
