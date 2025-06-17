@@ -1,10 +1,11 @@
+import React from "react";
 import IconButton from "../components/IconButton";
 
 import { IoBookSharp } from "react-icons/io5";
 import { MdLeaderboard } from "react-icons/md";
 import { FaComments, FaQuestion } from "react-icons/fa";
 
-const LessonActions = () => {
+const LessonActions = React.memo(() => {
   const goToSection = (id: string) => {
     document.querySelector(`#${id}`)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -35,6 +36,6 @@ const LessonActions = () => {
       />
     </section>
   );
-};
+});
 
 export default LessonActions;
