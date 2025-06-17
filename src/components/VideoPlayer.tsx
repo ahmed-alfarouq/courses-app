@@ -115,7 +115,10 @@ const VideoPlayer = ({
 
   return (
     <div
-      className={cn("relative w-full rounded-md overflow-hidden", className)}
+      className={cn(
+        "relative w-full max-h-[85vh] rounded-md overflow-hidden",
+        className
+      )}
       ref={containerRef}
     >
       {error && <ErrorHandler message={error} />}

@@ -65,7 +65,7 @@ const VideoBar = ({
     [videoRef, duration]
   );
 
-  const handleIncreaseVolume = () => {
+  const handleIncreaseVolume = useCallback(() => {
     const video = videoRef.current;
     if (video) {
       if (video.volume < 1) {
@@ -73,9 +73,9 @@ const VideoBar = ({
         setVolume(video.volume * 100);
       }
     }
-  };
+  }, [videoRef]);
 
-  const handleDecreaseVolume = () => {
+  const handleDecreaseVolume = useCallback(() => {
     const video = videoRef.current;
     if (video) {
       if (video.volume > 0) {
@@ -83,7 +83,7 @@ const VideoBar = ({
         setVolume(video.volume * 100);
       }
     }
-  };
+  }, [videoRef]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -106,6 +106,9 @@ const VideoBar = ({
         case "f":
           toggleFullScreen();
           break;
+        case "t":
+          toggleTheaterMode();
+          break;
         case "arrowright":
           video.currentTime += 5;
           break;
@@ -127,7 +130,15 @@ const VideoBar = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [videoRef.current]);
+  }, [
+    handleDecreaseVolume,
+    handleIncreaseVolume,
+    handleToggleMute,
+    toggleFullScreen,
+    toggleTheaterMode,
+    toggleVideo,
+    videoRef,
+  ]);
 
   return (
     <div
