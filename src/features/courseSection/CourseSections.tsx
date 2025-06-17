@@ -26,7 +26,7 @@ const CourseSections = ({ course, className }: CourseSectionsProps) => {
   }, [course.id, course.sections, lesson_id]);
 
   return (
-    <section className={cn(className)}>
+    <section className={cn(className)} id="curriculm">
       <h2 className="font-semibold text-2xl md:text-[27px] mb-4">
         Topics for This Course
       </h2>

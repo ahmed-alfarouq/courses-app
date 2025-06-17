@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb";
-import IconButton from "../components/IconButton";
 import VideoPlayer from "../components/VideoPlayer";
 import ErrorOverlay from "../components/ErrorOverlay";
-import JumpIconLink from "../components/JumpIconLink";
+
 
 import PDFSection from "../features/PDFSection";
 import ExamSection from "../features/ExamSection";
@@ -16,9 +15,8 @@ import useCourseLesson from "../hooks/useCourseLesson";
 
 import { useMobileContext } from "../context/MobileContext";
 
-import { IoBookSharp } from "react-icons/io5";
-import { MdLeaderboard } from "react-icons/md";
-import { FaComments, FaQuestion } from "react-icons/fa";
+
+import LessonActions from "../features/LessonActions";
 
 const breadcrumbItems = [
   { label: "Home", to: "/" },
@@ -78,30 +76,7 @@ const CourseDetails = () => {
                 startNextLesson={startNextLesson}
               />
             )}
-            <section className="flex items-center gap-4 mt-4">
-              <JumpIconLink
-                toolTipId="curriculm"
-                to="#curriculm"
-                icon={<IoBookSharp size={18} />}
-                ariaLabel="go to curriculm"
-              />
-              <JumpIconLink
-                toolTipId="comments"
-                to="#comments"
-                icon={<FaComments size={18} />}
-                ariaLabel="go to comments"
-              />
-              <IconButton
-                toolTipId="q&a"
-                icon={<FaQuestion size={18} />}
-                ariaLabel="open Q&A"
-              />
-              <IconButton
-                toolTipId="leaderboard"
-                icon={<MdLeaderboard size={18} />}
-                ariaLabel="open leaderboard"
-              />
-            </section>
+            <LessonActions />
             <section className="mt-10">
               <h2 className="font-semibold text-2xl md:text-[27px]">
                 Course Materials
