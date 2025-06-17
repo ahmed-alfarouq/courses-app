@@ -92,8 +92,8 @@ const useCourseLesson = ({
 
     if (!nextLesson) {
       const currentSectionIndex = sectionRef.current.index;
-      const nextSection =
-        currentSectionIndex && course.sections[currentSectionIndex + 1];
+      const nextSection = course.sections[currentSectionIndex + 1];
+
       if (!nextSection || nextSection.lessons.length === 0) {
         if (setCourseCompleted) {
           storeProgress(currentLessonId);
