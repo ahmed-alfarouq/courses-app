@@ -1,10 +1,12 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@sglara/cn";
 
 import VideoBar from "./videoPlayer/VideoBar";
 import PlayButton from "./videoPlayer/PlayButton";
 import ErrorHandler from "./videoPlayer/ErrorHandler";
 import BufferingLoader from "./videoPlayer/BufferingLoader";
+
+import { useMobileContext } from "../context/MobileContext";
 
 const VideoPlayer = ({
   url,
@@ -17,8 +19,11 @@ const VideoPlayer = ({
   onVideoEnd?: () => void;
   onTheaterModeToggle: () => void;
 }) => {
+  const { isMobile } = useMobileContext();
+
   const [videoPlayed, setVideoPlayed] = useState<boolean>(false);
   const [videoPaused, setVideoPaused] = useState<boolean>(false);
+  const [stickedOnTop, setStickOnTop] = useState<boolean>(false);
   const [isWaiting, setIsWaiting] = useState<boolean>(false);
   const [canPlay, setCanPlay] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -113,10 +118,37 @@ const VideoPlayer = ({
     onTheaterModeToggle();
   }, [onTheaterModeToggle]);
 
+  const handleScroll = useCallback(() => {
+    const container = containerRef.current;
+    if (container) {
+      const offsetY = container.getBoundingClientRect().top;
+      const scrollY = window.scrollY;
+
+      if (offsetY <= 0 && !stickedOnTop) {
+        setStickOnTop(true);
+        return;
+      }
+      if (scrollY < 50 && stickedOnTop) {
+        setStickOnTop(false);
+        return;
+      }
+    }
+  }, [stickedOnTop]);
+
+  useEffect(() => {
+    if (isMobile) {
+      document.addEventListener("scroll", handleScroll);
+      return () => {
+        document.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [handleScroll, isMobile]);
+
   return (
     <div
       className={cn(
-        "relative w-full max-h-[85vh] rounded-md overflow-hidden",
+        "relative w-full max-h-[85vh] rounded-md overflow-hidden transition-all duration-300",
+        stickedOnTop && "fixed top-0 left-0 right-0 rounded-none z-[60]",
         className
       )}
       ref={containerRef}
