@@ -8,9 +8,11 @@ import type { Lesson, StudentProgressProps } from "../types";
 const useCourseLesson = ({
   courseId,
   lessonId,
+  setCourseCompleted,
 }: {
   courseId?: string;
   lessonId?: string;
+  setCourseCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const navigate = useNavigate();
   const { courses } = useCoursesContext();
@@ -54,28 +56,8 @@ const useCourseLesson = ({
     return null;
   }, [course, courseId, isLessonUnlocked, lessonId, navigate]);
 
-  const startNextLesson = () => {
-    if (!currentLesson || !course) return;
-
-    const currentLessonId = Number(lessonId);
+  const storeProgress = (currentLessonId: number, nextLessonId?: number) => {
     const storageName = `progress-${courseId}`;
-    let nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
-
-    if (!nextLesson) {
-      const currentSectionIndex = course.sections.findIndex((section) =>
-        section.lessons.find((lesson) => lesson.id === currentLessonId)
-      );
-
-      const nextSection = course.sections[currentSectionIndex + 1];
-      if (!nextSection || nextSection.lessons.length === 0) return;
-
-      nextLesson = nextSection.lessons[0];
-    }
-
-    if (nextLesson.type === "pdf") {
-      nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
-    }
-
     const stored = localStorage.getItem(storageName);
 
     let progress: StudentProgressProps = {
@@ -92,7 +74,8 @@ const useCourseLesson = ({
 
     completedSet.add(currentLessonId);
     unlockedSet.add(currentLessonId);
-    unlockedSet.add(nextLesson.id);
+
+    if (nextLessonId) unlockedSet.add(nextLessonId);
 
     const updatedProgress = {
       completedLessons: [...completedSet],
@@ -100,6 +83,35 @@ const useCourseLesson = ({
     };
 
     localStorage.setItem(storageName, JSON.stringify(updatedProgress));
+  };
+
+  const startNextLesson = () => {
+    if (!currentLesson || !course) return;
+
+    const currentLessonId = Number(lessonId);
+    let nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
+
+    if (!nextLesson) {
+      const currentSectionIndex = course.sections.findIndex((section) =>
+        section.lessons.find((lesson) => lesson.id === currentLessonId)
+      );
+
+      const nextSection = course.sections[currentSectionIndex + 1];
+      if (!nextSection || nextSection.lessons.length === 0) {
+        if (setCourseCompleted) {
+          storeProgress(currentLessonId);
+          setCourseCompleted(true);
+        }
+        return;
+      }
+
+      nextLesson = nextSection.lessons[0];
+    }
+
+    if (nextLesson.type === "pdf") {
+      nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
+    }
+    storeProgress(currentLessonId, nextLesson.id);
     navigate(`/courses/${courseId}/${nextLesson.id}`);
   };
 

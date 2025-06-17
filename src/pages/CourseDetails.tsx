@@ -2,6 +2,7 @@ import { cn } from "@sglara/cn";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
+import Alert from "../components/Alert";
 import Loader from "../components/Loader";
 import ErrorOverlay from "../components/ErrorOverlay";
 
@@ -20,6 +21,7 @@ const CourseDetails = () => {
   const containerRef = useRef<HTMLElement>(null);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [courseCompleted, setCourseCompleted] = useState(false);
   const [isTheaterMode, setIsTheaterMode] = useState(false);
 
   const { isMobile } = useMobileContext();
@@ -29,6 +31,7 @@ const CourseDetails = () => {
   const { course, currentLesson, startNextLesson } = useCourseLesson({
     courseId: id,
     lessonId: lesson_id,
+    setCourseCompleted,
   });
 
   useEffect(() => {
@@ -65,6 +68,13 @@ const CourseDetails = () => {
               startNextLesson={startNextLesson}
               toggleTheaterMode={toggleTheaterMode}
             />
+            {courseCompleted && (
+              <Alert
+                type="success"
+                message="Congratulations, you've completed the course."
+                className="mt-4"
+              />
+            )}
             <div className={cn(isTheaterMode && !isMobile && "w-[57%]")}>
               <LessonActions />
               <CourseMaterialBox course={course} />
