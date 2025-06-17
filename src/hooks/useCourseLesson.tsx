@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useCoursesContext } from "../context/coursesContext";
@@ -14,9 +14,11 @@ const useCourseLesson = ({
   lessonId?: string;
   setCourseCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [redirect, setRedirect] = useState({ state: false, to: "" });
+  const sectionLessonsRef = useRef<Lesson[]>([]);
+
   const navigate = useNavigate();
   const { courses } = useCoursesContext();
-  const sectionLessonsRef = useRef<Lesson[]>([]);
 
   const course = useMemo(() => {
     if (!courses || !courseId) return null;
@@ -34,11 +36,6 @@ const useCourseLesson = ({
   const currentLesson = useMemo(() => {
     if (!course) return null;
 
-    if (!lessonId || !isLessonUnlocked) {
-      const lessonId = course.sections[0].lessons[0].id;
-      navigate(`/courses/${courseId}/${lessonId}`);
-    }
-
     for (const section of course.sections) {
       let lessonIndex = 0;
       const lesson = section.lessons.find((l, i) => {
@@ -54,7 +51,7 @@ const useCourseLesson = ({
     }
 
     return null;
-  }, [course, courseId, isLessonUnlocked, lessonId, navigate]);
+  }, [course, lessonId]);
 
   const storeProgress = (currentLessonId: number, nextLessonId?: number) => {
     const storageName = `progress-${courseId}`;
@@ -112,9 +109,23 @@ const useCourseLesson = ({
       nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
     }
     storeProgress(currentLessonId, nextLesson.id);
-    navigate(`/courses/${courseId}/${nextLesson.id}`);
+    setRedirect({ state: true, to: `/courses/${courseId}/${nextLesson.id}` });
   };
 
+  useEffect(() => {
+    if (course && (!lessonId || !isLessonUnlocked)) {
+      const defaultId = course.sections[0]?.lessons[0]?.id;
+      if (defaultId) {
+        setRedirect({ state: true, to: `/courses/${courseId}/${defaultId}` });
+      }
+    }
+  }, [course, lessonId, isLessonUnlocked, courseId]);
+
+  useEffect(() => {
+    if (redirect.state) {
+      navigate(redirect.to);
+    }
+  }, [navigate, redirect.state, redirect.to]);
   return { course, currentLesson, startNextLesson };
 };
 
