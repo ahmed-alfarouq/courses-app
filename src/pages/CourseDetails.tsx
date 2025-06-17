@@ -45,12 +45,16 @@ const CourseDetails = () => {
       setIsLoading(false);
     }
 
+    if (isTheaterMode && currentLesson?.type !== "video") {
+      toggleTheaterMode();
+    }
+
     const stored = localStorage.getItem(`progress-${course?.id}`);
     if (stored) {
       const parsedData: StudentProgressProps = JSON.parse(stored);
       setStudentProgress(parsedData);
     }
-  }, [course, currentLesson]);
+  }, [course, currentLesson, isTheaterMode]);
 
   const toggleTheaterMode = () => {
     setIsTheaterMode((prev) => !prev);
