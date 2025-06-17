@@ -57,6 +57,7 @@ const useCourseLesson = ({
   const startNextLesson = () => {
     if (!currentLesson || !course) return;
 
+    const currentLessonId = Number(lessonId);
     const storageName = `progress-${courseId}`;
     let nextLesson = sectionLessonsRef.current[currentLesson.index + 1];
 
@@ -76,7 +77,6 @@ const useCourseLesson = ({
     }
 
     const stored = localStorage.getItem(storageName);
-    const currentLessonId = Number(lessonId);
 
     let progress: StudentProgressProps = {
       completedLessons: [],
