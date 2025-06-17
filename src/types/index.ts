@@ -139,6 +139,13 @@ export interface ModalProps {
   children: React.ReactNode;
   isOpened: boolean;
   close: () => void;
+  className?: string;
+}
+
+export interface QAModalProps {
+  isOpen: boolean;
+  close: () => void;
+  courseId: number;
 }
 
 export interface PDFSectionProps {
