@@ -12,12 +12,16 @@ import type { CourseSectionItemProps } from "./CourseSections.types";
 const CourseSectionItem = React.memo(
   ({ lesson, isOpen, duration, numOfQuestions }: CourseSectionItemProps) => {
     const { id } = useParams<{ id: string }>();
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
 
     return (
       <div className="flex justify-between items-center gap-2 border-b border-primary-border py-5">
         <Link
           to={`/courses/${id}/${lesson.id}`}
           className={cn("flex gap-2 w-3/5", !isOpen && "pointer-events-none")}
+          onClick={scrollToTop}
         >
           <IoDocumentTextOutline size={18} className="shrink-0" />
           <p className="text-secondary-text text-[15px]">{lesson.name}</p>
