@@ -1,7 +1,7 @@
 type LessonType = "video" | "exam" | "pdf";
 
 export interface CourseComment {
-  id: number;
+  id: number | string;
   name: string;
   avatar: string;
   content: string;

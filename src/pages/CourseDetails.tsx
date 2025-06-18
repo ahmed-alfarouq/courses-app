@@ -120,7 +120,11 @@ const CourseDetails = () => {
                   className="mt-10"
                 />
               )}
-              <CommentsSection comments={currentLesson.comments} />
+              <CommentsSection
+                comments={currentLesson.comments}
+                courseId={course.id}
+                lessonId={currentLesson.id}
+              />
             </div>
             {/* Show on theater mode */}
             {!isMobile && isTheaterMode && (

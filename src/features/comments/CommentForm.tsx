@@ -1,29 +1,60 @@
+import uuid4 from "uuid4";
 import { useState } from "react";
 
 import Button from "../../components/Button";
 
-const CommentForm = () => {
+import type { CourseComment } from "../../types";
+import type { CommentFormProps } from "./comments.types";
+
+const CommentForm = ({ courseId, lessonId }: CommentFormProps) => {
+  const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
-  const handleComment = (e: React.FormEvent<HTMLFormElement>) => {
+  const sotreComment = (newComment: CourseComment) => {
+    const storageName = `comments-${courseId}-${lessonId}`;
+    const store = localStorage.getItem(storageName);
+    if (store) {
+      const parsedData: CourseComment[] = JSON.parse(store);
+      const newComments = [...parsedData, newComment];
+
+      localStorage.setItem(storageName, JSON.stringify(newComments));
+      return;
+    }
+    localStorage.setItem(storageName, JSON.stringify([newComment]));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-    const formData = new FormData(e.currentTarget);
-    const comment = formData.get("comment");
 
-    if (!comment || typeof comment != "string") {
+    if (!comment.length) {
       setError("Please enter a valid comment");
       return;
     }
 
-    console.log(comment);
+    sotreComment({
+      id: uuid4(),
+      avatar: "https://placehold.co/150x150?text=AF",
+      name: "Ahmed Al-Farouq",
+      createdAt: `${new Date()}`,
+      updatedAt: `${new Date()}`,
+      content: comment,
+    });
+    setComment("");
+  };
+
+  const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (error) setError("");
+    setComment(e.target.value);
   };
 
   return (
-    <form onSubmit={handleComment} className="my-4">
+    <form onSubmit={handleSubmit} className="my-4">
       <textarea
         name="comment"
         rows={8}
+        value={comment}
+        onChange={handleComment}
         className="shadow w-full rounded-md mb-4 p-2 text-secondary-text text-[15px]"
       />
       {error && <span className="block mb-2 text-red-500">{error}</span>}
