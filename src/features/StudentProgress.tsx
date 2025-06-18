@@ -4,6 +4,7 @@ const StudentProgress = ({ percent }: { percent: number }) => {
       <div
         className="w-full h-[5px] bg-[#E6E6E6] rounded-full"
         role="progressbar"
+        aria-label={`studen progress is ${percent}%`}
       >
         <div
           className="bg-[#6ABD8A] h-[5px] rounded-full transition-all duration-300"

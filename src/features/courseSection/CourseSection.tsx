@@ -47,6 +47,7 @@ const CourseSection = ({
             type="button"
             className="cursor-pointer"
             onClick={handleToggleSection}
+            aria-label={isOpened ? "Close section" : "Open section"}
           >
             {isOpened ? <BsDash size={18} /> : <BsPlus size={18} />}
           </button>
