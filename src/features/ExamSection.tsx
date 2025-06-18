@@ -1,38 +1,63 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-import Modal from "../components/Modal";
 import Button from "../components/Button";
+import ExamModal from "./examModal/ExamModal";
 
 import type { ExamSectionProps } from "../types";
 
-const ExamSection = ({
-  title,
-  description,
-  startNextLesson,
-}: ExamSectionProps) => {
-  const [isOpened, setIsOpened] = useState(false);
-  const toggleModal = () => setIsOpened((prev) => !prev);
+const ExamSection = React.memo(
+  ({
+    title,
+    description,
+    startNextLesson,
+    duration,
+    exam,
+  }: ExamSectionProps) => {
+    const [isOpened, setIsOpened] = useState(false);
+    const [examStarted, setExamStarted] = useState(false);
 
-  return (
-    <section className="shadow rounded p-6">
-      <h2 className="text-primary-text capitalize text-lg md:text-2xl mb-2">
-        {title}
-      </h2>
-      <p className="text-secondary-text text-sm md:text-lg mb-6">
-        {description}
-      </p>
-      <div className="flex justify-between items-center">
-        <Button type="button" text="Start Exam" onClick={toggleModal} />
-        {startNextLesson && (
-          <Button type="button" text="Next Lesson" onClick={startNextLesson} />
-        )}
-      </div>
+    const toggleModal = () => {
+      if (!isOpened) {
+        setExamStarted(true);
+      }
+      setIsOpened((prev) => !prev);
+    };
 
-      <Modal isOpened={isOpened} close={toggleModal}>
-        Exam's Data
-      </Modal>
-    </section>
-  );
-};
+    const handleExamEnd = () => {
+      setExamStarted(false);
+      setIsOpened(false);
+    };
+
+    return (
+      <section className="shadow rounded p-6">
+        <h2 className="text-primary-text capitalize text-lg md:text-2xl mb-2">
+          {title}
+        </h2>
+        <p className="text-secondary-text text-sm md:text-lg mb-6">
+          {description}
+        </p>
+        <div className="flex justify-between items-center">
+          <Button type="button" text="Start Exam" onClick={toggleModal} />
+          {startNextLesson && (
+            <Button
+              type="button"
+              text="Next Lesson"
+              onClick={startNextLesson}
+            />
+          )}
+        </div>
+
+        <ExamModal
+          isOpened={isOpened}
+          toggleModal={toggleModal}
+          exam={exam}
+          duration={duration}
+          started={examStarted}
+          onEnd={handleExamEnd}
+        />
+      </section>
+    );
+  }
+);
 
 export default ExamSection;

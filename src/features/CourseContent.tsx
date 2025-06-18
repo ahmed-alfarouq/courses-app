@@ -2,16 +2,20 @@ import PDFSection from "./PDFSection";
 import ExamSection from "./ExamSection";
 import VideoPlayer from "../components/VideoPlayer";
 
-import type { Lesson } from "../types";
+import type { ExamQuestion, Lesson } from "../types";
 
 const CourseContent = ({
   currentLesson,
   startNextLesson,
   toggleTheaterMode,
+  exam,
+  lessonDuration,
 }: {
   currentLesson: Lesson;
   startNextLesson: () => void;
   toggleTheaterMode: () => void;
+  exam?: ExamQuestion[];
+  lessonDuration: number;
 }) => {
   return (
     <>
@@ -35,6 +39,8 @@ const CourseContent = ({
           title={currentLesson.name}
           description={currentLesson.description}
           startNextLesson={startNextLesson}
+          duration={lessonDuration}
+          exam={exam!}
         />
       )}
     </>

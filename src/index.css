@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/a11y";
 
 @font-face {
   font-family: Spartan;
@@ -10,7 +12,7 @@
 
 @font-face {
   font-family: "GE SS Two";
-  src: url("/fonts/GE_SS_Two_Light.ttf") format("truetype");
+  src: url("/fonts/GE_SS_Two_Light.otf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;

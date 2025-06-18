@@ -66,6 +66,19 @@ export interface StudentProgressProps {
 }
 
 // Components
+export interface CheckboxProps {
+  label: string;
+  id: string;
+  name: string;
+}
+
+export interface TimerProps {
+  duration: number; // in minutes
+  start: boolean;
+  onEnd: () => void;
+  className?: string;
+}
+
 export interface BreadcrumbItem {
   label: string;
   to?: string;
@@ -159,4 +172,6 @@ export interface ExamSectionProps {
   title: string;
   description: string;
   startNextLesson?: () => void;
+  duration: number;
+  exam: ExamQuestion[];
 }

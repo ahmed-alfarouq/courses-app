@@ -94,6 +94,8 @@ const CourseDetails = () => {
               currentLesson={currentLesson}
               startNextLesson={startNextLesson}
               toggleTheaterMode={toggleTheaterMode}
+              lessonDuration={parseInt(currentLesson.duration!)}
+              exam={currentLesson.exam}
             />
             {courseCompleted && (
               <Alert
