@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# **📘 Course App – Interactive Learning Experience**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Course App** is a modern web platform built to deliver engaging online courses with features like video lessons, comments, Q&A, leaderboard, and progress tracking.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **📸 Screenshots**
 
-## Expanding the ESLint configuration
+| **Lesson View**                             | **Mobile View**                           |
+| ------------------------------------------- | ------------------------------------------------ |
+| ![lesson-view](./screenshot-app.png)     | ![leaderboard-modal](./screenshot-mobile.png) |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## **🚀 Live Demo**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🔗 **[Visit Course App Live](https://courses-app-eight.vercel.app/courses/1/1)**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## **🛠️ Tech Stack**
+
+### **Frontend**
+
+- **Vite + React 18+**
+- **TypeScript**
+- **Tailwind CSS** (Utility-First CSS)
+- **React Icons**
+- **Swiper.js** (for interactive sliders)
+- **React Context API** (for global state)
+
+---
+
+## **📚 Features**
+
+- ✅ **Video Lessons**
+- ✅ **Interactive Comments & Q&A Modal**
+- ✅ **Persistent Progress Tracking (localStorage)**
+- ✅ **Custom Leaderboard Modal**
+- ✅ **Theater Mode + Fullscreen Support**
+- ✅ **Custom Timer Component for Exams**
+- ✅ **Custom Checkbox, Modal, and UI Components**
+- ✅ **Swiper Slides with Navigation Preview**
+- ✅ **Mobile-Responsive Design**
+
+---
+
+## **🖥️ Installation Guide**
+
+### 🔹 Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+### 🔹 Clone & Setup
+
+```bash
+git clone https://github.com/your-username/course-app.git
+cd course-app
+cp .env.example .env
