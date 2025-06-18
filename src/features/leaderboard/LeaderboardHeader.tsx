@@ -34,7 +34,7 @@ const LeaderboardHeader = ({ course }: LeaderboardHeaderProps) => {
   return (
     <header className="flex flex-col items-center gap-2">
       <h2 className="text-[#080264] text-[15px] font-light">{course.name}</h2>
-      <span className="text-[#080264] text-[15px] font-bold">Leaderboard</span>
+      <span className="text-[#080264] text-[15px] font-bold mb-4">Leaderboard</span>
       <MotivationalWord
         word={SayByScore.message}
         icon={<SayByScore.icon size={50} color="green" />}

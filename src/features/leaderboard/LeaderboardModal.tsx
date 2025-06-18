@@ -10,7 +10,7 @@ const LeaderboardModal = ({ isOpen, close, course }: LeaderboardModalProps) => {
     <Modal
       isOpened={isOpen}
       close={close}
-      className="flex flex-col justify-between"
+      className="flex flex-col justify-between px-8 md:px-10"
     >
       <LeaderboardHeader course={course} />
       <div className="flex flex-col gap-5 px-4 py-5 my-10 bg-[#F5F9FA] overflow-y-auto rounded">
