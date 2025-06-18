@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { Comment } from "./comments";
 import Modal from "../components/Modal";
 import Button from "../components/Button";
 
@@ -45,12 +46,13 @@ const QAModal = ({ isOpen, close, courseId }: QAModalProps) => {
     >
       <div className="flex flex-col gap-5 px-4 py-5 overflow-y-auto">
         {questions.map((question, i) => (
-          <span
+          <Comment
             key={i}
-            className="text-xl text-secondary-text bg-gray/10 p-3 rounded"
-          >
-            {question}
-          </span>
+            date={`${new Date()}`}
+            avatar="https://placehold.co/150x150?text=AF"
+            name="Ahmed Al-Farouq"
+            comment={question}
+          />
         ))}
       </div>
       <form onSubmit={handleSubmit}>
