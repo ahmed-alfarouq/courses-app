@@ -50,14 +50,25 @@ const CommentForm = ({ courseId, lessonId }: CommentFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="my-4">
+      <label htmlFor="comment" className="sr-only">
+        Enter a comment
+      </label>
       <textarea
+        id="comment"
         name="comment"
         rows={8}
         value={comment}
         onChange={handleComment}
         className="shadow w-full rounded-md mb-4 p-2 text-secondary-text text-[15px]"
+        placeholder="Enter a comment"
+        aria-invalid={!!error}
+        aria-describedby={error ? "comment-error" : undefined}
       />
-      {error && <span className="block mb-2 text-red-500">{error}</span>}
+      {error && (
+        <span id="comment-error" className="block mb-2 text-red-500">
+          {error}
+        </span>
+      )}
       <Button type="submit" text="Submit Review" />
     </form>
   );
