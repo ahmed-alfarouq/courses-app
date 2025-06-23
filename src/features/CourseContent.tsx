@@ -2,6 +2,7 @@ import PDFSection from "./PDFSection";
 import ExamSection from "./ExamSection";
 import VideoPlayer from "../components/VideoPlayer";
 
+
 import type { ExamQuestion, Lesson } from "../types";
 
 const CourseContent = ({
@@ -21,7 +22,7 @@ const CourseContent = ({
     <>
       {currentLesson.type === "video" && (
         <VideoPlayer
-          url={currentLesson.url || ""}
+          src={currentLesson.url || ""}
           onVideoEnd={startNextLesson}
           onTheaterModeToggle={toggleTheaterMode}
         />
