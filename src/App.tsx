@@ -10,28 +10,22 @@ import CourseDetails from "./pages/CourseDetails";
 import ErrorOverlay from "./components/ErrorOverlay";
 import CoursesContext from "./context/coursesContext";
 
+// Hooks
+import useMobile from "./hooks/useMobile";
+
+// Contexts
+import MobileContext from "./context/MobileContext";
+
 // API
 import { getCourses } from "./lib/api/courses";
 
 // Types
 import type { Course } from "./types";
-import MobileContext from "./context/MobileContext";
 
 const App = () => {
+  const { isMobile } = useMobile();
   const [courses, setCourses] = useState<Course[] | undefined>();
   const [error, setError] = useState<string>("");
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     getCourses()

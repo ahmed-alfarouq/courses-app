@@ -1,7 +1,6 @@
 import PDFSection from "./PDFSection";
 import ExamSection from "./ExamSection";
-import VideoPlayer from "../components/VideoPlayer";
-
+import VideoPlayer from "../VideoPlayer";
 
 import type { ExamQuestion, Lesson } from "../types";
 
