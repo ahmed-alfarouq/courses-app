@@ -8,7 +8,7 @@ import MenuList from "./settings/MenuList";
 import type { Tab } from "./VideoPlayer.types";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
-// const qualities = ["144p", "360p", "720p", "1080p"];
+
 // const captions = ["Off", "English", "Arabic"];
 
 const SettingsMenu = React.memo(
@@ -16,7 +16,6 @@ const SettingsMenu = React.memo(
     const [isOpen, setIsOpen] = useState(false);
     const [currentSpeed, setCurrentSpeed] = useState(1);
     const [activeTab, setActiveTab] = useState<Tab>("speed");
-    // const [quality, setQuality] = useState("720p");
     // const [selectedCaption, setSelectedCaption] = useState("Off");
 
     const menuRef = useRef<HTMLDivElement>(null);
@@ -86,14 +85,8 @@ const SettingsMenu = React.memo(
               Coming soon...
             </span>
           )}
-          {/* {activeTab === "quality" && (
-            <MenuList
-              items={qualities}
-              activeItem={quality}
-              onSelect={setQuality}
-            />
-          )}
-          {activeTab === "captions" && (
+
+          {/* {activeTab === "captions" && (
             <MenuList
               items={captions}
               activeItem={selectedCaption}
