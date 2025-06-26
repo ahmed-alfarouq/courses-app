@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import type { useVideoShortcutsProps } from "../components/VideoPlayer.types";
+import type { useVideoShortcutsProps } from "../components/videoPlayer/VideoPlayer.types";
 
 const useVideoShortcuts = ({
   videoRef,
