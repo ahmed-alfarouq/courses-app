@@ -128,7 +128,7 @@ const VideoPlayer = ({
   return (
     <div
       className={cn(
-        "relative w-full max-h-[85vh] bg-black rounded-md overflow-hidden transition-all duration-300",
+        "relative w-full max-h-[85vh] bg-black rounded-md transition-all duration-300",
         isStickyActive && "fixed top-0 left-0 right-0 rounded-none z-[60]",
         className
       )}
@@ -136,7 +136,7 @@ const VideoPlayer = ({
     >
       {!hasPlayed && canPlay && <PlayButtonOverlay play={togglePlay} />}
       {errorMessage && <ErrorMessage message={errorMessage} />}
-      {(isBuffering || !canPlay) && <BufferingIndicator />}
+      {hasPlayed && (isBuffering || !canPlay) && <BufferingIndicator />}
 
       <PlayPauseOverlay
         togglePlay={togglePlay}
