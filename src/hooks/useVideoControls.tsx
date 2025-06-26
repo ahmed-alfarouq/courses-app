@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import type { useVideoControlsProps } from "../components/VideoPlayer.types";
+import type { useVideoControlsProps } from "../components/videoPlayer/VideoPlayer.types";
 import useVideoShortcuts from "./useVideoShortcuts";
 
 const useVideoControls = ({
