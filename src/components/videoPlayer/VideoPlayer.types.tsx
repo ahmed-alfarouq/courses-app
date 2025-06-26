@@ -1,3 +1,5 @@
+export type Tab = "speed" | "quality" | "captions";
+
 export interface VideoPlayerProps {
   src: string;
   poster?: string;
@@ -96,6 +98,26 @@ export interface ErrorMessageProps {
   message: string;
   className?: string;
 }
+
+export interface TabSelectorProps {
+  tabs: Tab[];
+  activeTab: Tab;
+  onTabChange: (tab: Tab) => void;
+}
+
+export interface MenuListProps<T> {
+  items: T[];
+  activeItem: T;
+  onSelect: (item: T) => void;
+  renderItem?: (item: T) => React.ReactNode;
+  formatLabel?: (item: T) => string;
+}
+
+export interface MenuItemProps {
+  label: string;
+  isActive?: boolean;
+  onClick: () => void;
+};
 
 // Hooks
 export interface useVideoControlsProps {

@@ -14,6 +14,7 @@ import useVideoControls from "../../hooks/useVideoControls";
 import { useMobileContext } from "../../context/MobileContext";
 
 import type { ControlsProps } from "./VideoPlayer.types";
+import SettingsMenu from "./SettingsMenu";
 
 const Controls = ({
   videoRef,
@@ -84,6 +85,7 @@ const Controls = ({
       />
       <div className="flex items-center gap-5">
         <DurationDisplay duration={duration} currentTime={currentTime} />
+        <SettingsMenu videoRef={videoRef} />
         {!isMobile && toggleTheaterMode && (
           <TheaterModeButton toggle={toggleTheaterMode} />
         )}
