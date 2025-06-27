@@ -5,18 +5,20 @@ import { MdSettings } from "react-icons/md";
 import TabSelector from "./settings/TabSelector";
 import MenuList from "./settings/MenuList";
 
-import type { Tab } from "./VideoPlayer.types";
+import type { Settings, Tab } from "./VideoPlayer.types";
 
 const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
 
-// const captions = ["Off", "English", "Arabic"];
-
 const SettingsMenu = React.memo(
-  ({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement | null> }) => {
+  ({ videoRef, tracks, setSelectedTrack, defaultTrackLang }: Settings) => {
+    const languages = tracks ? tracks.map((track) => track.label) : [];
+
     const [isOpen, setIsOpen] = useState(false);
     const [currentSpeed, setCurrentSpeed] = useState(1);
     const [activeTab, setActiveTab] = useState<Tab>("speed");
-    // const [selectedCaption, setSelectedCaption] = useState("Off");
+    const [selectedCaption, setSelectedCaption] = useState(
+      defaultTrackLang || "Off"
+    );
 
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +28,11 @@ const SettingsMenu = React.memo(
       if (!videoRef.current) return;
       videoRef.current.playbackRate = speed;
       setCurrentSpeed(speed);
+    };
+
+    const changeCaption = (caption: string) => {
+      setSelectedTrack(caption);
+      setSelectedCaption(caption);
     };
 
     useEffect(() => {
@@ -62,12 +69,12 @@ const SettingsMenu = React.memo(
 
         <div
           className={cn(
-            "absolute bottom-full right-full translate-x-1/4 md:left-1/2 md:-translate-x-1/2 mb-2 invisible opacity-0 transition-all flex flex-col bg-black/70 text-white rounded-md w-fit z-50",
+            "min-w-24 absolute bottom-full right-full translate-x-1/4 md:left-1/2 md:-translate-x-1/2 mb-2 invisible opacity-0 transition-all flex flex-col bg-black/70 text-white rounded-md w-fit z-50",
             isOpen && "visible opacity-100"
           )}
         >
           <TabSelector
-            tabs={["speed", "quality", "captions"]}
+            tabs={["speed", "captions"]}
             activeTab={activeTab}
             onTabChange={setActiveTab}
           />
@@ -80,19 +87,14 @@ const SettingsMenu = React.memo(
               formatLabel={(s) => `${s}x`}
             />
           )}
-          {activeTab != "speed" && (
-            <span className="inline-block text-white text-xs font-medium p-3">
-              Coming soon...
-            </span>
-          )}
 
-          {/* {activeTab === "captions" && (
+          {activeTab === "captions" && (
             <MenuList
-              items={captions}
+              items={[...languages, "Off"]}
               activeItem={selectedCaption}
-              onSelect={setSelectedCaption}
+              onSelect={changeCaption}
             />
-          )} */}
+          )}
         </div>
       </div>
     );

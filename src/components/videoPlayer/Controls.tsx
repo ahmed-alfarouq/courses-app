@@ -18,6 +18,9 @@ import SettingsMenu from "./SettingsMenu";
 
 const Controls = ({
   videoRef,
+  tracks,
+  setSelectedTrack,
+  defaultTrackLang,
   isAutoPlay,
   isMuted,
   hasPlayed,
@@ -85,7 +88,12 @@ const Controls = ({
       />
       <div className="flex items-center gap-5">
         <DurationDisplay duration={duration} currentTime={currentTime} />
-        <SettingsMenu videoRef={videoRef} />
+        <SettingsMenu
+          videoRef={videoRef}
+          tracks={tracks}
+          setSelectedTrack={setSelectedTrack}
+          defaultTrackLang={defaultTrackLang}
+        />
         {!isMobile && toggleTheaterMode && (
           <TheaterModeButton toggle={toggleTheaterMode} />
         )}

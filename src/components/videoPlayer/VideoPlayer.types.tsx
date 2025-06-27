@@ -1,8 +1,16 @@
-export type Tab = "speed" | "quality" | "captions";
+export type Tab = "speed" | "captions";
+
+export interface Track {
+  src: string;
+  srclang: string;
+  label: string;
+  default?: boolean;
+}
 
 export interface VideoPlayerProps {
   src: string;
   poster?: string;
+  tracks?: Track[];
   isSticky?: boolean;
   isAutoPlay?: boolean;
   isMuted?: boolean;
@@ -14,8 +22,16 @@ export interface VideoPlayerProps {
   onTheaterModeToggle?: () => void;
 }
 
+export interface CaptionOverlayProps {
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+  track?: Track | null;
+}
+
 export interface ControlsProps {
   videoRef: React.RefObject<HTMLVideoElement | null>;
+  tracks?: Track[];
+  setSelectedTrack: (t: string) => void;
+  defaultTrackLang?: string;
   isAutoPlay?: boolean;
   isMuted?: boolean;
   hasPlayed: boolean;
@@ -99,6 +115,13 @@ export interface ErrorMessageProps {
   className?: string;
 }
 
+export interface Settings {
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+  tracks?: Track[];
+  setSelectedTrack: (t: string) => void;
+  defaultTrackLang?: string;
+}
+
 export interface TabSelectorProps {
   tabs: Tab[];
   activeTab: Tab;
@@ -117,7 +140,7 @@ export interface MenuItemProps {
   label: string;
   isActive?: boolean;
   onClick: () => void;
-};
+}
 
 // Hooks
 export interface useVideoControlsProps {

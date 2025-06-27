@@ -22,6 +22,19 @@ const CourseContent = ({
       {currentLesson.type === "video" && (
         <VideoPlayer
           src={currentLesson.url || ""}
+          tracks={[
+            {
+              src: "/captions/ar.vtt",
+              srclang: "ar",
+              label: "Arabic",
+              default: true,
+            },
+            {
+              src: "/captions/en.vtt",
+              srclang: "en",
+              label: "English",
+            },
+          ]}
           onVideoEnd={startNextLesson}
           onTheaterModeToggle={toggleTheaterMode}
         />

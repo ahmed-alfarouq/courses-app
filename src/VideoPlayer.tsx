@@ -3,6 +3,7 @@ import { cn } from "@sglara/cn";
 
 import Controls from "./components/videoPlayer/Controls";
 import ErrorMessage from "./components/videoPlayer/ErrorMessage";
+import CaptionsOverlay from "./components/videoPlayer/CaptionsOverlay";
 import PlayPauseOverlay from "./components/videoPlayer/PlayPauseOverlay";
 import PlayButtonOverlay from "./components/videoPlayer/PlayButtonOverlay";
 import BufferingIndicator from "./components/videoPlayer/BufferingIndicator";
@@ -12,11 +13,15 @@ import useAutoHideControls from "./hooks/useAutoHideControls";
 
 import { useMobileContext } from "./context/MobileContext";
 
-import type { VideoPlayerProps } from "./components/videoPlayer/VideoPlayer.types";
+import type {
+  Track,
+  VideoPlayerProps,
+} from "./components/videoPlayer/VideoPlayer.types";
 
 const VideoPlayer = ({
   src,
   poster,
+  tracks,
   isSticky,
   isAutoPlay,
   isMuted,
@@ -35,6 +40,9 @@ const VideoPlayer = ({
   const [canPlay, setCanPlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(
+    tracks?.find((t: Track) => t.default) || null
+  );
   const [errorMessage, setErrorMessage] = useState("");
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -86,6 +94,11 @@ const VideoPlayer = ({
     []
   );
 
+  const handleChangeTrack = (t: string) => {
+    const track = tracks?.find((track: Track) => track.label === t) || null;
+    setSelectedTrack(track);
+  };
+
   const togglePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -128,7 +141,7 @@ const VideoPlayer = ({
   return (
     <div
       className={cn(
-        "relative w-full max-h-[85vh] bg-black rounded-md transition-all duration-300",
+        "relative w-full max-h-[85vh] bg-black rounded-md transition-all duration-300 overflow-hidden",
         isStickyActive && "fixed top-0 left-0 right-0 rounded-none z-[60]",
         className
       )}
@@ -146,11 +159,11 @@ const VideoPlayer = ({
 
       <video
         ref={videoRef}
+        className="size-full"
         src={src}
         poster={poster}
         {...(isMuted ? { muted: true } : {})}
         {...(isAutoPlay ? { autoPlay: true } : {})}
-        className="w-full"
         onLoadedMetadata={handleLoadedMetadata}
         onCanPlay={handleCanPlay}
         onPlay={handlePlay}
@@ -164,9 +177,15 @@ const VideoPlayer = ({
       >
         Your browser does not support the video tag.
       </video>
+      {hasPlayed && (
+        <CaptionsOverlay videoRef={videoRef} track={selectedTrack} />
+      )}
       {canPlay && (
         <Controls
           videoRef={videoRef}
+          tracks={tracks}
+          setSelectedTrack={handleChangeTrack}
+          defaultTrackLang={selectedTrack?.label}
           isAutoPlay={isAutoPlay}
           isMuted={isMuted}
           hasPlayed={hasPlayed}
