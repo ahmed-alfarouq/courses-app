@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { parseVTT } from "../../lib/utils/parseVTT";
 
 import type { CaptionOverlayProps } from "./VideoPlayer.types";
 import type { Caption } from "src/lib/utils/parseVTT";
 
-const CaptionsOverlay = ({ videoRef, track }: CaptionOverlayProps) => {
+const CaptionsOverlay = React.memo(({ videoRef, track }: CaptionOverlayProps) => {
   const [captions, setCaptions] = useState<Caption[]>([]);
   const [currentCaption, setCurrentCaption] = useState("");
 
@@ -37,11 +37,11 @@ const CaptionsOverlay = ({ videoRef, track }: CaptionOverlayProps) => {
   return (
     <div
       dir={track?.srclang === "ar" ? "rtl" : "ltr"}
-      className="absolute bottom-20 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/70 text-white text-lg font-semibold rounded max-w-[90%] text-center z-[70] pointer-events-none"
+      className="absolute bottom-8 sm:bottom-15 left-1/2 -translate-x-1/2 sm:px-4 px-2 py-2 bg-black/70 text-white text-sm sm:text-lg font-semibold rounded w-11/12 sm:w-auto max-w-[95%] text-center z-[70] pointer-events-none"
     >
       {currentCaption}
     </div>
   );
-};
+});
 
 export default CaptionsOverlay;

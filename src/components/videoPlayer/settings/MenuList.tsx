@@ -12,7 +12,7 @@ const MenuList = <T extends string | number>({
   formatLabel,
 }: MenuListProps<T>) => {
   return (
-    <div className="flex flex-col py-2">
+    <div className="flex flex-col py-2 max-h-36 sm:max-h-max overflow-scroll">
       {items.map((item) => {
         const isActive = activeItem === item;
         return (

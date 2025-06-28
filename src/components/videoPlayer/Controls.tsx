@@ -55,12 +55,12 @@ const Controls = ({
   return (
     <div
       className={cn(
-        "absolute bottom-0 left-0 right-0 z-[60] bg-black/70 flex justify-between items-center gap-3 px-4 py-2 transition-all duration-300",
+        "absolute bottom-0 left-0 right-0 z-[60] bg-black/70 flex justify-between items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 transition-all duration-300",
         !hasPlayed && "hidden",
         isVisible ? "opacity-100 h-11" : "opacity-0 h-0 pointer-events-none"
       )}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center sm:gap-3">
         <BackwardButton
           seconds={backwardSeconds}
           onSeekBackward={handleSeekBackward}

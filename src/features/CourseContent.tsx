@@ -35,6 +35,7 @@ const CourseContent = ({
               label: "English",
             },
           ]}
+          isSticky
           onVideoEnd={startNextLesson}
           onTheaterModeToggle={toggleTheaterMode}
         />

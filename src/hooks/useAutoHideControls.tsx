@@ -8,16 +8,20 @@ const useAutoHideControls = ({
   delayMs: number;
 }) => {
   const [visible, setVisible] = useState(true);
+  const [canDisappear, setCanDisappear] = useState(false);
+
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const resetTimer = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setVisible(true);
 
-    timeoutRef.current = setTimeout(() => {
-      setVisible(false);
-    }, delayMs);
-  }, [delayMs]);
+    if (canDisappear) {
+      timeoutRef.current = setTimeout(() => {
+        setVisible(false);
+      }, delayMs);
+    }
+  }, [delayMs, canDisappear]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -36,6 +40,23 @@ const useAutoHideControls = ({
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, [containerRef, resetTimer]);
+
+  useEffect(() => {
+    const handleCanDisappear = () => {
+      const videoSettingsMenu = document.getElementById("video-settings-menu");
+
+      // To wait till data-open updated
+      setTimeout(() => {
+        const open = videoSettingsMenu?.dataset.open === "true";
+        setCanDisappear(!open);
+      }, 0);
+    };
+    document.addEventListener("click", handleCanDisappear);
+
+    return () => {
+      document.removeEventListener("click", handleCanDisappear);
+    };
+  }, []);
 
   return visible;
 };

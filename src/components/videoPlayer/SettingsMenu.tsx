@@ -57,7 +57,12 @@ const SettingsMenu = React.memo(
     }, [isOpen]);
 
     return (
-      <div className="relative flex items-center" ref={menuRef}>
+      <div
+        className="relative flex items-center"
+        id="video-settings-menu"
+        data-open={isOpen}
+        ref={menuRef}
+      >
         <button
           type="button"
           className="text-white text-base md:text-xl hover:text-rose-600 transition-colors cursor-pointer"

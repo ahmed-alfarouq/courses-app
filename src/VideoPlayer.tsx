@@ -94,10 +94,10 @@ const VideoPlayer = ({
     []
   );
 
-  const handleChangeTrack = (t: string) => {
+  const handleChangeTrack = useCallback((t: string) => {
     const track = tracks?.find((track: Track) => track.label === t) || null;
     setSelectedTrack(track);
-  };
+  }, [tracks]);
 
   const togglePlay = useCallback(() => {
     const video = videoRef.current;
@@ -141,7 +141,7 @@ const VideoPlayer = ({
   return (
     <div
       className={cn(
-        "relative w-full max-h-[85vh] bg-black rounded-md transition-all duration-300 overflow-hidden",
+        "relative w-full max-h-[85vh] bg-black rounded-md transition-all duration-300",
         isStickyActive && "fixed top-0 left-0 right-0 rounded-none z-[60]",
         className
       )}

@@ -10,7 +10,7 @@ const TabSelector = ({ tabs, activeTab, onTabChange }: TabSelectorProps) => {
           key={tab}
           onClick={() => onTabChange(tab)}
           className={cn(
-            "w-full p-2 text-center capitalize hover:bg-rose-600 cursor-pointer",
+            "w-full p-2 text-sm sm:text-base text-center capitalize hover:bg-rose-600 cursor-pointer",
             activeTab === tab ? "border-b-2 border-rose-600 font-semibold" : ""
           )}
         >
